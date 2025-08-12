@@ -1,0 +1,100 @@
+--------------------------------
+loading GCC 10.2.1
+based on SCL Developer Toolset 10
+--------------------------------
+
+--------------------------------
+loading CUDA 12.8 with cuDNN / NCCL
+based on cuda_12.8.0_570.86.10_linux.run
+--------------------------------
+
+[2025-08-12 21:10:49,028] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-12 21:10:52,566] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-12 21:10:54,521] [WARNING] [runner.py:220:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+Detected VISIBLE_DEVICES=0 but ignoring it because one or several of --include/--exclude/--num_gpus/--num_nodes cl args were used. If you want to use CUDA_VISIBLE_DEVICES don't pass any of these arguments to deepspeed.
+[2025-08-12 21:10:54,524] [INFO] [runner.py:610:main] cmd = /home/u8644434/miniconda3/envs/llama2/bin/python3.13 -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMF19 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None pretrain.py --batch_size 1 --seq_len 350 --total_steps 100 --deepspeed_config native.json
+[2025-08-12 21:10:56,122] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-12 21:10:59,166] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-12 21:11:01,089] [INFO] [launch.py:146:main] WORLD INFO DICT: {'localhost': [0]}
+[2025-08-12 21:11:01,092] [INFO] [launch.py:152:main] nnodes=1, num_local_procs=1, node_rank=0
+[2025-08-12 21:11:01,092] [INFO] [launch.py:163:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0]})
+[2025-08-12 21:11:01,092] [INFO] [launch.py:164:main] dist_world_size=1
+[2025-08-12 21:11:01,092] [INFO] [launch.py:168:main] Setting CUDA_VISIBLE_DEVICES=0
+[2025-08-12 21:11:01,093] [INFO] [launch.py:256:main] process 2983025 spawned with command: ['/home/u8644434/miniconda3/envs/llama2/bin/python3.13', '-u', 'pretrain.py', '--local_rank=0', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100', '--deepspeed_config', 'native.json']
+[2025-08-12 21:11:02,698] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-12 21:11:05,703] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+[2025-08-12 21:11:08,133] [INFO] [comm.py:821:init_distributed] cdb=None
+[2025-08-12 21:11:08,133] [INFO] [comm.py:852:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+Rank 0 / World size 1
+Loading model and tokenizer: meta-llama/Llama-2-7b-hf
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [00:41<00:41, 41.90s/it]Fetching 2 files: 100%|██████████| 2/2 [00:41<00:00, 20.95s/it]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:12<00:12, 12.78s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:17<00:00,  8.27s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:17<00:00,  8.95s/it]
+[2025-08-12 21:12:20,512] [INFO] [logging.py:107:log_dist] [Rank 0] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
+[2025-08-12 21:12:20,517] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 1
+[2025-08-12 21:12:20,577] [INFO] [engine.py:1339:_configure_distributed_model] ********** distributed groups summary **********
+	 self.dp_world_size=1
+	 self.mp_world_size=1
+	 self.seq_dp_world_size=1
+	 self.sequence_parallel_size=1
+***********************************************
+[2025-08-12 21:12:20,585] [INFO] [logging.py:107:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[rank0]:W0812 21:12:20.675000 2983025 site-packages/torch/utils/cpp_extension.py:2425] TORCH_CUDA_ARCH_LIST is not set, all archs for visible cards are included for compilation. 
+[rank0]:W0812 21:12:20.675000 2983025 site-packages/torch/utils/cpp_extension.py:2425] If this is not desired, please set os.environ['TORCH_CUDA_ARCH_LIST'] to specific architectures.
+[1/3] /work/HPC_SYS/twnia2/pkg-rocky8/nvidia/cuda/cuda-12.8/bin/nvcc --generate-dependencies-with-compile --dependency-output multi_tensor_adam.cuda.o.d -ccbin gcc -DTORCH_EXTENSION_NAME=fused_adam -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1018\" -I/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/deepspeed/ops/csrc/includes -I/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/deepspeed/ops/csrc/adam -isystem /home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/torch/include -isystem /home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /work/HPC_SYS/twnia2/pkg-rocky8/nvidia/cuda/cuda-12.8/include -isystem /home/u8644434/miniconda3/envs/llama2/include/python3.13 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr -gencode=arch=compute_70,code=compute_70 -gencode=arch=compute_70,code=sm_70 --compiler-options '-fPIC' -O3 -DVERSION_GE_1_1 -DVERSION_GE_1_3 -DVERSION_GE_1_5 -lineinfo --use_fast_math -gencode=arch=compute_70,code=sm_70 -gencode=arch=compute_70,code=compute_70 -UC10_USE_GLOG -std=c++17 -c /home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/deepspeed/ops/csrc/adam/multi_tensor_adam.cu -o multi_tensor_adam.cuda.o 
+nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+[2/3] g++ -MMD -MF fused_adam_frontend.o.d -DTORCH_EXTENSION_NAME=fused_adam -DTORCH_API_INCLUDE_EXTENSION_H -DPYBIND11_COMPILER_TYPE=\"_gcc\" -DPYBIND11_STDLIB=\"_libstdcpp\" -DPYBIND11_BUILD_ABI=\"_cxxabi1018\" -I/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/deepspeed/ops/csrc/includes -I/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/deepspeed/ops/csrc/adam -isystem /home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/torch/include -isystem /home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/torch/include/torch/csrc/api/include -isystem /work/HPC_SYS/twnia2/pkg-rocky8/nvidia/cuda/cuda-12.8/include -isystem /home/u8644434/miniconda3/envs/llama2/include/python3.13 -fPIC -std=c++17 -O3 -std=c++17 -g -Wno-reorder -DVERSION_GE_1_1 -DVERSION_GE_1_3 -DVERSION_GE_1_5 -UC10_USE_GLOG -c /home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/deepspeed/ops/csrc/adam/fused_adam_frontend.cpp -o fused_adam_frontend.o 
+[3/3] g++ fused_adam_frontend.o multi_tensor_adam.cuda.o -shared -L/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/torch/lib -lc10 -lc10_cuda -ltorch_cpu -ltorch_cuda -ltorch -ltorch_python -L/work/HPC_SYS/twnia2/pkg-rocky8/nvidia/cuda/cuda-12.8/lib64 -lcudart -o fused_adam.so
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/work/u8644434/LLM/pretrain.py", line 83, in <module>
+[rank0]:     main()
+[rank0]:     ~~~~^^
+[rank0]:   File "/work/u8644434/LLM/pretrain.py", line 55, in main
+[rank0]:     ds_engine, optimizer, _, _ = deepspeed.initialize(model=model, config=args.deepspeed_config if hasattr(args, 'deepspeed_config') else None)
+[rank0]:                                  ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank0]:     engine = DeepSpeedEngine(args=args,
+[rank0]:                              model=model,
+[rank0]:     ...<8 lines>...
+[rank0]:                              mesh_device=mesh_device,
+[rank0]:                              config_class=config_class)
+[rank0]:   File "/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/deepspeed/runtime/engine.py", line 335, in __init__
+[rank0]:     self._configure_optimizer(optimizer, model_parameters)
+[rank0]:     ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/deepspeed/runtime/engine.py", line 1417, in _configure_optimizer
+[rank0]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
+[rank0]:   File "/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/deepspeed/runtime/engine.py", line 1494, in _configure_basic_optimizer
+[rank0]:     optimizer = FusedAdam(
+[rank0]:         model_parameters,
+[rank0]:         **optimizer_parameters,
+[rank0]:         adam_w_mode=effective_adam_w_mode,
+[rank0]:     )
+[rank0]:   File "/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
+[rank0]:     fused_adam_cuda = FusedAdamBuilder().load()
+[rank0]:   File "/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/deepspeed/ops/op_builder/builder.py", line 539, in load
+[rank0]:     return self.jit_load(verbose)
+[rank0]:            ~~~~~~~~~~~~~^^^^^^^^^
+[rank0]:   File "/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/deepspeed/ops/op_builder/builder.py", line 588, in jit_load
+[rank0]:     op_module = load(name=self.name,
+[rank0]:                      sources=self.strip_empty_entries(sources),
+[rank0]:     ...<4 lines>...
+[rank0]:                      with_cuda=True if (isinstance(self, CUDAOpBuilder) and not self.build_for_cpu) else None,
+[rank0]:                      verbose=verbose)
+[rank0]:   File "/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/torch/utils/cpp_extension.py", line 1681, in load
+[rank0]:     return _jit_compile(
+[rank0]:         name,
+[rank0]:     ...<11 lines>...
+[rank0]:         is_standalone,
+[rank0]:         keep_intermediates=keep_intermediates)
+[rank0]:   File "/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/torch/utils/cpp_extension.py", line 2164, in _jit_compile
+[rank0]:     return _import_module_from_library(name, build_directory, is_python_module)
+[rank0]:   File "/home/u8644434/miniconda3/envs/llama2/lib/python3.13/site-packages/torch/utils/cpp_extension.py", line 2632, in _import_module_from_library
+[rank0]:     module = importlib.util.module_from_spec(spec)
+[rank0]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
+[rank0]:   File "<frozen importlib._bootstrap_external>", line 1320, in create_module
+[rank0]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[rank0]: ImportError: /home/u8644434/.cache/torch_extensions/py313_cu128/fused_adam/fused_adam.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
+[rank0]:[W812 21:12:50.747746166 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+[2025-08-12 21:12:53,104] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 2983025
+[2025-08-12 21:12:53,106] [ERROR] [launch.py:325:sigkill_handler] ['/home/u8644434/miniconda3/envs/llama2/bin/python3.13', '-u', 'pretrain.py', '--local_rank=0', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100', '--deepspeed_config', 'native.json'] exits with return code = 1
