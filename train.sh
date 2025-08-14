@@ -22,4 +22,4 @@ export CC=gcc
 export CXX=g++
 
 deepspeed --num_gpus=1 pretrain.py \
-  --batch_size 1 --seq_len 350 --total_steps 100 --deepspeed_config offload.json
+  --batch_size 1 --seq_len 350 --total_steps 100 --deepspeed_config zero_3.json

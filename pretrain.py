@@ -51,8 +51,10 @@ def main():
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
-    model = AutoModelForCausalLM.from_pretrained(args.model_name).to(device)
+    model = AutoModelForCausalLM.from_pretrained(args.model_name, torch_dtype=torch.float16, use_cache=False)
+    model.gradient_checkpointing_enable()
 
+    torch.cuda.empty_cache()
     ds_engine, optimizer, _, _ = deepspeed.initialize(model=model, config=args.deepspeed_config if hasattr(args, 'deepspeed_config') else None)
 
     model.train()
@@ -82,18 +84,14 @@ def main():
         total_steps_time += step_time
 
         mem_gb = torch.cuda.memory_allocated() / 1024**3
-        total_mem += mem_gb
-        max_mem = max(max_mem, mem_gb)
         print(f"[Step {step}/{args.total_steps}] Loss: {loss_val:.4f} | Tokens/s: {tokens_per_sec:.2f} | GPU Mem (GB): {mem_gb:.2f}")
 
     avg_tokens_per_sec = total_tokens / total_steps_time
-    avg_mem_gb = total_mem / args.total_steps
     total_time = time.time() - start_time
 
     print(f"Training done in {total_time:.2f} seconds.")
     print(f"Avg Tokens/s: {avg_tokens_per_sec:.2f}")
-    print(f"Avg GPU Mem (GB): {avg_mem_gb:.2f}")
-    print(f"Peak GPU Mem (GB): {max_mem:.2f}")
+    print(f"Peak GPU Mem (GB): {torch.cuda.max_memory_allocated() / 1024**3 :.2f}")
 
 if __name__ == "__main__":
     main()
