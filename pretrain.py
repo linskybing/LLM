@@ -57,9 +57,6 @@ def main():
 
     model.train()
 
-    inputs = generate_batch(tokenizer, args.batch_size, args.seq_len, device)
-    labels = inputs.clone()
-
     start_time = time.time()
 
     total_tokens = 0.0
@@ -68,6 +65,9 @@ def main():
     max_mem = 0.0
 
     for step in range(args.total_steps):
+        inputs = generate_batch(tokenizer, args.batch_size, args.seq_len, device)
+        labels = inputs.clone()
+
         torch.cuda.synchronize()
         step_start = time.time()
 

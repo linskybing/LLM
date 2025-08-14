@@ -222,3 +222,19 @@ Config: alpha=0.000010, betas=(0.900000, 0.999000), weight_decay=0.000000, adam_
 [2025-08-14 11:17:31,432] [INFO] [logging.py:107:log_dist] [Rank 0] step=30, skipped=0, lr=[1e-05], mom=[(0.9, 0.999)]
 [2025-08-14 11:17:32,640] [INFO] [timer.py:264:stop] epoch=0/micro_step=30/global_step=30, RunningAvgSamplesPerSec=0.11866289742783448, CurrSamplesPerSec=0.11869947118141615, MemAllocated=13.01GB, MaxMemAllocated=18.12GB
 [Step 30/100] Loss: 0.0001 | Tokens/s: 41.52 | GPU Mem (GB): 12.81
+[2025-08-14 11:18:55,713] [INFO] [logging.py:107:log_dist] [Rank 0] step=40, skipped=0, lr=[1e-05], mom=[(0.9, 0.999)]
+[2025-08-14 11:18:56,920] [INFO] [timer.py:264:stop] epoch=0/micro_step=40/global_step=40, RunningAvgSamplesPerSec=0.11866760516370167, CurrSamplesPerSec=0.11875746273631596, MemAllocated=13.01GB, MaxMemAllocated=18.12GB
+[Step 40/100] Loss: 0.0000 | Tokens/s: 41.54 | GPU Mem (GB): 12.81
+[2025-08-14 11:20:19,981] [INFO] [logging.py:107:log_dist] [Rank 0] step=50, skipped=0, lr=[1e-05], mom=[(0.9, 0.999)]
+[2025-08-14 11:20:21,189] [INFO] [timer.py:264:stop] epoch=0/micro_step=50/global_step=50, RunningAvgSamplesPerSec=0.11867423200930995, CurrSamplesPerSec=0.11870328401170695, MemAllocated=13.01GB, MaxMemAllocated=18.12GB
+[Step 50/100] Loss: 0.0000 | Tokens/s: 41.54 | GPU Mem (GB): 12.81
+[2025-08-14 11:21:44,252] [INFO] [logging.py:107:log_dist] [Rank 0] step=60, skipped=0, lr=[1e-05], mom=[(0.9, 0.999)]
+[2025-08-14 11:21:45,460] [INFO] [timer.py:264:stop] epoch=0/micro_step=60/global_step=60, RunningAvgSamplesPerSec=0.11867778703133966, CurrSamplesPerSec=0.11874264942216038, MemAllocated=13.01GB, MaxMemAllocated=18.12GB
+[Step 60/100] Loss: 0.0000 | Tokens/s: 41.56 | GPU Mem (GB): 12.81
+[2025-08-14 11:23:08,744] [INFO] [logging.py:107:log_dist] [Rank 0] step=70, skipped=0, lr=[1e-05], mom=[(0.9, 0.999)]
+[2025-08-14 11:23:09,952] [INFO] [timer.py:264:stop] epoch=0/micro_step=70/global_step=70, RunningAvgSamplesPerSec=0.11863455063595718, CurrSamplesPerSec=0.11864539904329985, MemAllocated=13.01GB, MaxMemAllocated=18.12GB
+[Step 70/100] Loss: 0.0000 | Tokens/s: 41.53 | GPU Mem (GB): 12.81
+[2025-08-14 11:24:33,047] [INFO] [logging.py:107:log_dist] [Rank 0] step=80, skipped=0, lr=[1e-05], mom=[(0.9, 0.999)]
+[2025-08-14 11:24:34,255] [INFO] [timer.py:264:stop] epoch=0/micro_step=80/global_step=80, RunningAvgSamplesPerSec=0.1186362818113456, CurrSamplesPerSec=0.11870862574537938, MemAllocated=13.01GB, MaxMemAllocated=18.12GB
+[Step 80/100] Loss: 0.0000 | Tokens/s: 41.52 | GPU Mem (GB): 12.81
+slurmstepd: error: *** JOB 760120 ON gn1213 CANCELLED AT 2025-08-14T11:24:53 ***
