@@ -84,9 +84,7 @@ def main():
         mem_gb = torch.cuda.memory_allocated() / 1024**3
         total_mem += mem_gb
         max_mem = max(max_mem, mem_gb)
-
-        if step % 10 == 0 or step == args.total_steps - 1:
-            print(f"[Step {step}/{args.total_steps}] Loss: {loss_val:.4f} | Tokens/s: {tokens_per_sec:.2f} | GPU Mem (GB): {mem_gb:.2f}")
+        print(f"[Step {step}/{args.total_steps}] Loss: {loss_val:.4f} | Tokens/s: {tokens_per_sec:.2f} | GPU Mem (GB): {mem_gb:.2f}")
 
     avg_tokens_per_sec = total_tokens / total_steps_time
     avg_mem_gb = total_mem / args.total_steps
