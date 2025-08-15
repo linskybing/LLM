@@ -22,7 +22,11 @@
     "reduce_bucket_size": 1e8,
     "stage3_max_live_parameters": 1e9,
     "stage3_prefetch_bucket_size": 5e7,
-    "stage3_param_persistence_threshold": 1e5
+    "stage3_param_persistence_threshold": 1e5,
+    "offload_optimizer": {
+        "device": "cpu",
+        "pin_memory": true
+    }
   },
   "gradient_checkpointing": {
     "enable": true

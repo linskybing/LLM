@@ -1,23 +1,20 @@
 #! /bin/bash
 
-sudo docker pull deepspeed/rocm501:ds060_pytorch110
+module purge
+module load rocm
 
-sudo docker run -it \
-  --device=/dev/kfd \
-  --device=/dev/dri \
-  --group-add video \
-  -v /home/sky/LLM:/workspace \
-  --name rocm_deepspeed_sky \
-  deepspeed/rocm501:ds060_pytorch110 \
-  bash
+export CC=clang
+export CXX=clang++
 
-pip install \
-  transformers==4.28.1 \
-  datasets==2.12.0 \
-  tokenizers==0.13.2 \
-  safetensors==0.3.1
-pip install numpy tqdm nltk
-pip install sentencepiece
+conda create -n deepspeed python=3.11 -y
+conda activate deepspeed
+pip install --upgrade pip
+pip3 install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.4
+pip install deepspeed-kernels
+pip install triton==3.2.0
 
-deepspeed --num_gpus=1 pretrain_amd.py \
-  --batch_size 1 --seq_len 350 --total_steps 100 --deepspeed_config native.json
+# FLASH_ATTENTION_TRITON_AMD_ENABLE="TRUE"
+# cd flash-attention &&\
+#     git checkout main_perf &&\
+#     python setup.py install
+DS_BUILD_CPU_ADAM=1 DS_BUILD_FUSED_ADAM=1 pip install --pre --global-option="build_ext" --global-option="-j52" .

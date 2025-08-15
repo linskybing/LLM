@@ -1,7 +1,7 @@
 import argparse
 import deepspeed
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM, LlamaTokenizer
+from transformers import AutoTokenizer, AutoModelForCausalLM
 import random
 import nltk
 import time
@@ -48,22 +48,28 @@ def main():
     print(f"Using device: {device}")
     print(f"Loading model and tokenizer: {args.model_name}")
 
-    tokenizer = LlamaTokenizer.from_pretrained(args.model_name)
-    model = AutoModelForCausalLM.from_pretrained(args.model_name).to(device)
+    tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    model = AutoModelForCausalLM.from_pretrained(args.model_name, torch_dtype=torch.bfloat16, attn_implementation="flash_attention_2")
+    model.gradient_checkpointing_enable()
 
-    ds_engine, optimizer, _, _ = deepspeed.initialize(
-        model=model,
-        config=args.deepspeed_config if hasattr(args, 'deepspeed_config') else None
-    )
+    torch.cuda.empty_cache()
+    ds_engine, optimizer, _, _ = deepspeed.initialize(model=model, config=args.deepspeed_config if hasattr(args, 'deepspeed_config') else None)
 
     model.train()
 
-    inputs = generate_batch(tokenizer, args.batch_size, args.seq_len, device)
-    labels = inputs.clone()
-
     start_time = time.time()
 
+    total_tokens = 0.0
+    total_steps_time = 0.0
+    total_mem = 0.0
+    max_mem = 0.0
+
     for step in range(args.total_steps):
+        inputs = generate_batch(tokenizer, args.batch_size, args.seq_len, device)
+        labels = inputs.clone()
+
         torch.cuda.synchronize()
         step_start = time.time()
 
@@ -72,14 +78,20 @@ def main():
         torch.cuda.synchronize()
         step_time = time.time() - step_start
 
-        tokens_per_sec = (args.batch_size * args.seq_len) / step_time
+        tokens_this_step = args.batch_size * args.seq_len
+        tokens_per_sec = tokens_this_step / step_time
+        total_tokens += tokens_this_step
+        total_steps_time += step_time
+
         mem_gb = torch.cuda.memory_allocated() / 1024**3
+        print(f"[Step {step}/{args.total_steps}] Loss: {loss_val:.4f} | Tokens/s: {tokens_per_sec:.2f} | GPU Mem (GB): {mem_gb:.2f}")
 
-        if step % 10 == 0 or step == args.total_steps - 1:
-            print(f"[Step {step}/{args.total_steps}] Loss: {loss_val:.4f} | Tokens/s: {tokens_per_sec:.2f} | GPU Mem (GB): {mem_gb:.2f}")
-
+    avg_tokens_per_sec = total_tokens / total_steps_time
     total_time = time.time() - start_time
+
     print(f"Training done in {total_time:.2f} seconds.")
+    print(f"Avg Tokens/s: {avg_tokens_per_sec:.2f}")
+    print(f"Peak GPU Mem (GB): {torch.cuda.max_memory_allocated() / 1024**3 :.2f}")
 
 if __name__ == "__main__":
     main()
