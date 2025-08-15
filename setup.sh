@@ -12,7 +12,7 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 pip install deepspeed-kernels
 
 git clone --recursive https://github.com/NVIDIA/cutlass.git
-cd cutlass
+
 
 export CUDA_HOME="/work/HPC_SYS/twnia2/pkg-rocky8/nvidia/hpc_sdk/Linux_x86_64/24.11/cuda/12.6/"
 export CC=gcc
