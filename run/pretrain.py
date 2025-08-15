@@ -73,6 +73,7 @@ def main():
         device_map=None,
         use_cache=False
     )
+    model.gradient_checkpointing_enable()
     model_parameters = filter(lambda p: p.requires_grad, model.parameters())
 
     # -----------------------------

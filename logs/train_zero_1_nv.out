@@ -1,10 +1,12 @@
-+--------------------------------------------------+
-| Nvidia hpc sdk v24.11 with cuda v12.6 is loaded. |
-+--------------------------------------------------+
+--------------------------------
+loading CUDA 12.8 with cuDNN / NCCL
+based on cuda_12.8.0_570.86.10_linux.run
+--------------------------------
+
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-Fri Aug 15 19:11:56 2025       
+Fri Aug 15 20:38:46 2025       
 +---------------------------------------------------------------------------------------+
-| NVIDIA-SMI 535.161.08             Driver Version: 535.161.08   CUDA Version: 12.2     |
+| NVIDIA-SMI 535.161.08             Driver Version: 535.161.08   CUDA Version: 12.8     |
 |-----------------------------------------+----------------------+----------------------+
 | GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
 | Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
@@ -51,368 +53,547 @@ Fri Aug 15 19:11:56 2025
 |  No running processes found                                                           |
 +---------------------------------------------------------------------------------------+
 True 8
-[2025-08-15 19:12:00,914] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-15 19:12:05,255] [WARNING] [runner.py:215:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+[2025-08-15 20:39:05,456] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 20:39:34,538] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-15 20:39:37,998] [WARNING] [runner.py:220:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
 Detected VISIBLE_DEVICES=0,1,2,3,4,5,6,7: setting --include=localhost:0,1,2,3,4,5,6,7
-[2025-08-15 19:12:05,256] [INFO] [runner.py:605:main] cmd = /home/u8644434/miniconda3/envs/ds/bin/python3.12 -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMSwgMiwgMywgNCwgNSwgNiwgN119 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None /work/u8644434/LLM/run/pretrain.py --deepspeed_config /work/u8644434/LLM/configs/zero_1.json --batch_size 1 --seq_len 350 --total_steps 100
-[2025-08-15 19:12:06,997] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-15 19:12:11,394] [INFO] [launch.py:139:main] 0 HPCX_NCCL_RDMA_SHARP_PLUGIN_DIR=/work/HPC_SYS/twnia2/pkg-rocky8/nvidia/hpc_sdk/Linux_x86_64/24.11/comm_libs/12.6/hpcx/hpcx-2.20/nccl_rdma_sharp_plugin
-[2025-08-15 19:12:11,395] [INFO] [launch.py:146:main] WORLD INFO DICT: {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]}
-[2025-08-15 19:12:11,395] [INFO] [launch.py:152:main] nnodes=1, num_local_procs=8, node_rank=0
-[2025-08-15 19:12:11,395] [INFO] [launch.py:163:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]})
-[2025-08-15 19:12:11,395] [INFO] [launch.py:164:main] dist_world_size=8
-[2025-08-15 19:12:11,395] [INFO] [launch.py:168:main] Setting CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-[2025-08-15 19:12:11,396] [INFO] [launch.py:256:main] process 3848009 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=0', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-15 19:12:11,397] [INFO] [launch.py:256:main] process 3848010 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=1', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-15 19:12:11,398] [INFO] [launch.py:256:main] process 3848011 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=2', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-15 19:12:11,399] [INFO] [launch.py:256:main] process 3848012 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=3', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-15 19:12:11,399] [INFO] [launch.py:256:main] process 3848013 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=4', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-15 19:12:11,400] [INFO] [launch.py:256:main] process 3848014 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=5', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-15 19:12:11,403] [INFO] [launch.py:256:main] process 3848015 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=6', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-15 19:12:11,409] [INFO] [launch.py:256:main] process 3848016 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=7', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-15 19:12:13,833] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-15 19:12:13,897] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-15 19:12:13,943] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-15 19:12:14,088] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-15 19:12:14,130] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-15 19:12:14,165] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-15 19:12:14,171] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-15 19:12:14,258] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 20:39:37,999] [INFO] [runner.py:610:main] cmd = /home/u8644434/miniconda3/envs/deepspeed/bin/python3.12 -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMSwgMiwgMywgNCwgNSwgNiwgN119 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None /work/u8644434/LLM/run/pretrain.py --deepspeed_config /work/u8644434/LLM/configs/zero_1.json --batch_size 1 --seq_len 350 --total_steps 100
+[2025-08-15 20:39:39,655] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 20:39:42,928] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-15 20:39:43,952] [INFO] [launch.py:146:main] WORLD INFO DICT: {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]}
+[2025-08-15 20:39:43,953] [INFO] [launch.py:152:main] nnodes=1, num_local_procs=8, node_rank=0
+[2025-08-15 20:39:43,953] [INFO] [launch.py:163:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]})
+[2025-08-15 20:39:43,953] [INFO] [launch.py:164:main] dist_world_size=8
+[2025-08-15 20:39:43,953] [INFO] [launch.py:168:main] Setting CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+[2025-08-15 20:39:43,954] [INFO] [launch.py:256:main] process 4034954 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=0', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 20:39:43,955] [INFO] [launch.py:256:main] process 4034955 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=1', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 20:39:43,956] [INFO] [launch.py:256:main] process 4034956 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=2', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 20:39:43,957] [INFO] [launch.py:256:main] process 4034957 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=3', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 20:39:43,958] [INFO] [launch.py:256:main] process 4034958 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=4', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 20:39:43,959] [INFO] [launch.py:256:main] process 4034959 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=5', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 20:39:43,960] [INFO] [launch.py:256:main] process 4034960 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=6', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 20:39:43,960] [INFO] [launch.py:256:main] process 4034961 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=7', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 20:39:46,542] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 20:39:46,586] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 20:39:46,613] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 20:39:46,643] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 20:39:46,684] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 20:39:46,685] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 20:39:46,754] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 20:39:46,843] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 20:39:50,725] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-15 20:39:50,777] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-15 20:39:50,858] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-15 20:39:50,858] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-15 20:39:50,902] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-15 20:39:51,002] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-15 20:39:51,092] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-15 20:39:51,305] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+[nltk_data]   Package words is already up-to-date!
 [nltk_data] Downloading package words to /home/u8644434/nltk_data...
 [nltk_data]   Package words is already up-to-date!
 [nltk_data] Downloading package words to /home/u8644434/nltk_data...
 [nltk_data]   Package words is already up-to-date!
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s][nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+[nltk_data] Downloading package words to /home/u8644434/nltk_data...
 [nltk_data]   Package words is already up-to-date!
 [nltk_data] Downloading package words to /home/u8644434/nltk_data...
 [nltk_data]   Package words is already up-to-date!
 [nltk_data] Downloading package words to /home/u8644434/nltk_data...
 [nltk_data]   Package words is already up-to-date!
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s][nltk_data] Downloading package words to /home/u8644434/nltk_data...
-[nltk_data]   Package words is already up-to-date!
-[nltk_data] Downloading package words to /home/u8644434/nltk_data...
-[nltk_data]   Package words is already up-to-date!
-[nltk_data] Downloading package words to /home/u8644434/nltk_data...
-[nltk_data]   Package words is already up-to-date!
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:16<00:16, 16.99s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:17<00:17, 17.75s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:18<00:18, 18.01s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:18<00:18, 18.04s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:18<00:18, 18.32s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:18<00:18, 18.24s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:18<00:18, 18.25s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:18<00:18, 18.56s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.55s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.52s/it]
-[2025-08-15 19:12:46,290] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
-[2025-08-15 19:12:46,291] [INFO] [comm.py:675:init_distributed] cdb=None
-Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.65s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.80s/it]
-[2025-08-15 19:12:47,756] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
-[2025-08-15 19:12:47,757] [INFO] [comm.py:675:init_distributed] cdb=None
-Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.59s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.72s/it]
-[2025-08-15 19:12:48,228] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
-[2025-08-15 19:12:48,228] [INFO] [comm.py:675:init_distributed] cdb=None
-Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.57s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.69s/it]
-Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.64s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.79s/it]
-[2025-08-15 19:12:48,690] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
-[2025-08-15 19:12:48,691] [INFO] [comm.py:675:init_distributed] cdb=None
-[2025-08-15 19:12:48,710] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
-[2025-08-15 19:12:48,710] [INFO] [comm.py:675:init_distributed] cdb=None
-Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.32s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.51s/it]
-Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.36s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.54s/it]
-Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.35s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.58s/it]
-[2025-08-15 19:12:49,306] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
-[2025-08-15 19:12:49,306] [INFO] [comm.py:675:init_distributed] cdb=None
-[2025-08-15 19:12:49,306] [INFO] [comm.py:706:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
-[2025-08-15 19:12:49,366] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
-[2025-08-15 19:12:49,376] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
-[2025-08-15 19:12:49,376] [INFO] [comm.py:675:init_distributed] cdb=None
-[2025-08-15 19:12:49,378] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
-[2025-08-15 19:12:49,444] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
-[2025-08-15 19:12:49,449] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
-[2025-08-15 19:12:49,450] [INFO] [comm.py:675:init_distributed] cdb=None
-[2025-08-15 19:12:49,452] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
-[2025-08-15 19:12:49,531] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
-[2025-08-15 19:12:49,757] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
-[2025-08-15 19:12:50,825] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
-[2025-08-15 19:12:50,829] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
-[2025-08-15 19:13:11,631] [INFO] [engine.py:1313:_configure_distributed_model] ********** distributed groups summary **********
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:17<00:17, 17.14s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:17<00:17, 17.24s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:17<00:17, 17.24s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:17<00:17, 17.33s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:17<00:17, 17.44s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:17<00:17, 17.73s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:17<00:17, 17.60s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:17<00:17, 17.74s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.57s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.56s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.61s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.60s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.60s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.61s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.62s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.61s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.59s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.62s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.60s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.67s/it]
+[2025-08-15 20:40:21,289] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
+[2025-08-15 20:40:21,289] [INFO] [comm.py:821:init_distributed] cdb=None
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.50s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.57s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.51s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.59s/it]
+[2025-08-15 20:40:21,370] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
+[2025-08-15 20:40:21,370] [INFO] [comm.py:821:init_distributed] cdb=None
+[2025-08-15 20:40:21,400] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
+[2025-08-15 20:40:21,400] [INFO] [comm.py:821:init_distributed] cdb=None
+[2025-08-15 20:40:21,402] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
+[2025-08-15 20:40:21,402] [INFO] [comm.py:821:init_distributed] cdb=None
+[2025-08-15 20:40:21,408] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
+[2025-08-15 20:40:21,408] [INFO] [comm.py:821:init_distributed] cdb=None
+[2025-08-15 20:40:21,408] [INFO] [comm.py:852:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[2025-08-15 20:40:21,526] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
+[2025-08-15 20:40:21,526] [INFO] [comm.py:821:init_distributed] cdb=None
+[2025-08-15 20:40:21,710] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
+[2025-08-15 20:40:21,710] [INFO] [comm.py:821:init_distributed] cdb=None
+[2025-08-15 20:40:21,766] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
+[2025-08-15 20:40:21,766] [INFO] [comm.py:821:init_distributed] cdb=None
+[2025-08-15 20:40:23,162] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
+[2025-08-15 20:40:23,162] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
+[2025-08-15 20:40:23,162] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
+[2025-08-15 20:40:23,164] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
+[2025-08-15 20:40:23,181] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
+[2025-08-15 20:40:23,190] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
+[2025-08-15 20:40:23,192] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
+[2025-08-15 20:40:23,315] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
+[2025-08-15 20:40:45,260] [INFO] [engine.py:1339:_configure_distributed_model] ********** distributed groups summary **********
 	 self.dp_world_size=8
 	 self.mp_world_size=1
 	 self.seq_dp_world_size=8
 	 self.sequence_parallel_size=1
 ***********************************************
-[rank2]: Traceback (most recent call last):
-[rank2]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
-[rank2]:     main()
-[rank2]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
-[rank2]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank2]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank2]:     engine = DeepSpeedEngine(args=args,
-[rank2]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
-[rank2]:     self._configure_optimizer(optimizer, model_parameters)
-[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
-[rank2]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
-[rank2]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
-[rank2]:     optimizer = FusedAdam(
-[rank2]:                 ^^^^^^^^^^
-[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
-[rank2]:     fused_adam_cuda = FusedAdamBuilder().load()
-[rank2]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
-[rank2]:     op_module = importlib.import_module(self.absolute_name())
-[rank2]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
-[rank2]:     return _bootstrap._gcd_import(name[level:], package, level)
-[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank2]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
-[rank2]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
-[rank2]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
-[rank2]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
-[rank2]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
-[rank2]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
-[rank2]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
-[rank2]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
-[2025-08-15 19:13:13,859] [INFO] [logging.py:107:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[2025-08-15 20:40:46,384] [INFO] [logging.py:107:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[2025-08-15 20:40:46,552] [INFO] [logging.py:107:log_dist] [Rank 0] Using DeepSpeed Optimizer param name adamw as basic optimizer
+[2025-08-15 20:40:46,552] [INFO] [logging.py:107:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
+[2025-08-15 20:40:46,561] [INFO] [logging.py:107:log_dist] [Rank 0] DeepSpeed Basic Optimizer = FusedAdam
+[2025-08-15 20:40:46,561] [INFO] [utils.py:59:is_zero_supported_optimizer] Checking ZeRO support for optimizer=FusedAdam type=<class 'deepspeed.ops.adam.fused_adam.FusedAdam'>
+[2025-08-15 20:40:46,561] [INFO] [logging.py:107:log_dist] [Rank 0] Creating torch.float16 ZeRO stage 1 optimizer
+[2025-08-15 20:40:46,561] [INFO] [stage_1_and_2.py:172:__init__] Reduce bucket size 5000000000
+[2025-08-15 20:40:46,561] [INFO] [stage_1_and_2.py:173:__init__] Allgather bucket size 500000000
+[2025-08-15 20:40:46,561] [INFO] [stage_1_and_2.py:174:__init__] CPU Offload: False
+[2025-08-15 20:40:46,561] [INFO] [stage_1_and_2.py:175:__init__] Round robin gradient partitioning: False
+[2025-08-15 20:41:12,629] [INFO] [utils.py:781:see_memory_usage] Before initializing optimizer states
+[2025-08-15 20:41:12,631] [INFO] [utils.py:782:see_memory_usage] MA 15.69 GB         Max_MA 17.26 GB         CA 17.27 GB         Max_CA 17 GB 
+[2025-08-15 20:41:12,631] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 46.77 GB, percent = 6.2%
+[2025-08-15 20:41:12,841] [INFO] [utils.py:781:see_memory_usage] After initializing optimizer states
+[2025-08-15 20:41:12,841] [INFO] [utils.py:782:see_memory_usage] MA 15.69 GB         Max_MA 18.83 GB         CA 20.41 GB         Max_CA 20 GB 
+[2025-08-15 20:41:12,841] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 47.71 GB, percent = 6.3%
+[2025-08-15 20:41:12,842] [INFO] [stage_1_and_2.py:599:__init__] optimizer state initialized
+[2025-08-15 20:41:13,007] [INFO] [utils.py:781:see_memory_usage] After initializing ZeRO optimizer
+[2025-08-15 20:41:13,008] [INFO] [utils.py:782:see_memory_usage] MA 15.69 GB         Max_MA 15.69 GB         CA 20.41 GB         Max_CA 20 GB 
+[2025-08-15 20:41:13,008] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 47.88 GB, percent = 6.3%
+[2025-08-15 20:41:13,009] [INFO] [logging.py:107:log_dist] [Rank 0] DeepSpeed Final Optimizer = DeepSpeedZeroOptimizer
+[2025-08-15 20:41:13,009] [INFO] [logging.py:107:log_dist] [Rank 0] DeepSpeed using configured LR scheduler = None
+[2025-08-15 20:41:13,009] [INFO] [logging.py:107:log_dist] [Rank 0] DeepSpeed LR Scheduler = None
+[2025-08-15 20:41:13,009] [INFO] [logging.py:107:log_dist] [Rank 0] step=0, skipped=0, lr=[1e-05], mom=[(0.9, 0.999)]
+[2025-08-15 20:41:13,010] [INFO] [logging.py:107:log_dist] [Rank 0] [TorchCheckpointEngine] Initialized with serialization = True
+[2025-08-15 20:41:13,010] [INFO] [config.py:954:print] DeepSpeedEngine configuration:
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   activation_checkpointing_config  {
+    "partition_activations": false, 
+    "contiguous_memory_optimization": false, 
+    "cpu_checkpointing": false, 
+    "number_checkpoints": null, 
+    "synchronize_checkpoint_boundary": false, 
+    "profile": false
+}
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'intra_op_parallelism': 1, 'single_submit': False, 'overlap_events': True, 'use_gds': False}
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   amp_enabled .................. False
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   amp_params ................... False
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   autotuning_config ............ {
+    "enabled": false, 
+    "start_step": null, 
+    "end_step": null, 
+    "metric_path": null, 
+    "arg_mappings": null, 
+    "metric": "throughput", 
+    "model_info": null, 
+    "results_dir": "autotuning_results", 
+    "exps_dir": "autotuning_exps", 
+    "overwrite": true, 
+    "fast": true, 
+    "start_profile_step": 3, 
+    "end_profile_step": 5, 
+    "tuner_type": "gridsearch", 
+    "tuner_early_stopping": 5, 
+    "tuner_num_trials": 50, 
+    "model_info_path": null, 
+    "mp_size": 1, 
+    "max_train_batch_size": null, 
+    "min_train_batch_size": 1, 
+    "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
+    "min_train_micro_batch_size_per_gpu": 1, 
+    "num_tuning_micro_batch_sizes": 3
+}
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   bfloat16_config .............. enabled=False immediate_grad_update=False check_grad_overflow=False
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   checkpoint_config ............ {'tag_validation': 'WARN', 'checkpoint_serialization': True, 'writer': None}
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   checkpoint_parallel_write_pipeline  False
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   checkpoint_tag_validation_enabled  True
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   checkpoint_tag_validation_fail  False
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0x14bb8cbf66c0>
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   communication_data_type ...... None
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   compile_config ............... deepcompile=False free_activation=False offload_activation=False offload_opt_states=False double_buffer=True symmetric_memory=False debug_log=False offload_parameters=False sync_before_reduce=False sync_after_reduce=False sync_before_allgather=False sync_after_allgather=False keep_int_input_tensors=True keep_all_input_tensors=False
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   curriculum_enabled_legacy .... False
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   curriculum_params_legacy ..... False
+[2025-08-15 20:41:13,011] [INFO] [config.py:958:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'pin_memory': False, 'curriculum_learning': {'enabled': False}, 'dynamic_batching': {'enabled': False, 'lr_scaling_method': 'linear', 'min_batch_size': 1, 'max_batch_size': None, 'sequence_picking_order': 'dataloader', 'verbose': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   data_efficiency_enabled ...... False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   dataloader_drop_last ......... False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   disable_allgather ............ False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   dump_state ................... False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   eigenvalue_enabled ........... False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   eigenvalue_gas_boundary_resolution  1
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   eigenvalue_layer_name ........ bert.encoder.layer
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   eigenvalue_layer_num ......... 0
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   eigenvalue_max_iter .......... 100
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   eigenvalue_stability ......... 1e-06
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   eigenvalue_tol ............... 0.01
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   eigenvalue_verbose ........... False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   elasticity_enabled ........... False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   float16_config ............... enabled=True auto_cast=False loss_scale=0.0 initial_scale_power=16 loss_scale_window=1000 hysteresis=2 consecutive_hysteresis=False min_loss_scale=1 fp16_master_weights_and_grads=False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   flops_profiler_config ........ {
+    "enabled": false, 
+    "recompute_fwd_factor": 0.0, 
+    "profile_step": 1, 
+    "module_depth": -1, 
+    "top_modules": 1, 
+    "detailed": true, 
+    "output_file": null
+}
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   global_rank .................. 0
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   grad_accum_dtype ............. None
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   gradient_accumulation_steps .. 1
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   gradient_clipping ............ 0.0
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   gradient_predivide_factor .... 1.0
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   graph_harvesting ............. False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   hybrid_engine ................ enabled=False max_out_tokens=512 inference_tp_size=1 release_inference_cache=False pin_parameters=True tp_gather_partition_size=8
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   load_universal_checkpoint .... False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   memory_breakdown ............. False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   mics_hierarchial_params_gather  False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   mics_shard_size .............. -1
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   monitor_config ............... tensorboard=TensorBoardConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') comet=CometConfig(enabled=False, samples_log_interval=100, project=None, workspace=None, api_key=None, experiment_name=None, experiment_key=None, online=None, mode=None) wandb=WandbConfig(enabled=False, group=None, team=None, project='deepspeed') csv_monitor=CSVConfig(enabled=False, output_path='', job_name='DeepSpeedJobName')
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   nebula_config ................ {
+    "enabled": false, 
+    "persistent_storage_path": null, 
+    "persistent_time_interval": 100, 
+    "num_of_version_in_retention": 2, 
+    "enable_nebula_load": true, 
+    "load_path": null
+}
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   optimizer_legacy_fusion ...... False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   optimizer_name ............... adamw
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   optimizer_params ............. {'lr': 1e-05}
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0, 'pipe_partitioned': True, 'grad_partitioned': True}
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   pld_enabled .................. False
+[2025-08-15 20:41:13,012] [INFO] [config.py:958:print]   pld_params ................... False
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   prescale_gradients ........... False
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   scheduler_name ............... None
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   scheduler_params ............. None
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   seq_parallel_communication_data_type  torch.float32
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   sparse_attention ............. None
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   sparse_gradients_enabled ..... False
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   steps_per_print .............. 1
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   tensor_parallel_config ....... dtype=torch.float16 autotp_size=0 tp_overlap_comm=False tensor_parallel=TPConfig(tp_size=1, tp_grain_size=1, mpu=None, tp_group=None) injection_policy_tuple=None keep_module_on_host=False replace_with_kernel_inject=False
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   timers_config ................ enabled=True synchronized=True
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   torch_autocast_dtype ......... None
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   torch_autocast_enabled ....... False
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   torch_autocast_lower_precision_safe_modules  None
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   train_batch_size ............. 8
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   train_micro_batch_size_per_gpu  1
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   use_data_before_expert_parallel_  False
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   use_node_local_storage ....... False
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   wall_clock_breakdown ......... False
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   weight_quantization_config ... None
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   world_size ................... 8
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   zero_allow_untested_optimizer  False
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   zero_config .................. stage=1 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=5000000000 use_multi_rank_bucket_allreduce=True allgather_partitions=True allgather_bucket_size=500000000 overlap_comm=True load_from_fp32_weights=True elastic_checkpoint=False offload_param=None offload_optimizer=None sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=5000000000 param_persistence_threshold=100000 model_persistence_threshold=9223372036854775807 max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=False module_granularity_threshold=0 use_all_reduce_for_fetch_params=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False zero_hpz_partition_size=1 zero_quantized_weights=False zero_quantized_nontrainable_weights=False zero_quantized_gradients=False zeropp_loco_param=None mics_shard_size=-1 mics_hierarchical_params_gather=False memory_efficient_linear=True pipeline_loading_checkpoint=False override_module_apply=True log_trace_cache_warnings=False
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   zero_enabled ................. True
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   zero_force_ds_cpu_optimizer .. True
+[2025-08-15 20:41:13,013] [INFO] [config.py:958:print]   zero_optimization_stage ...... 1
+[2025-08-15 20:41:13,013] [INFO] [config.py:944:print_user_config]   json = {
+    "train_batch_size": 8, 
+    "train_micro_batch_size_per_gpu": 1, 
+    "steps_per_print": 1, 
+    "optimizer": {
+        "type": "AdamW", 
+        "params": {
+            "lr": 1e-05
+        }
+    }, 
+    "fp16": {
+        "enabled": true
+    }, 
+    "zero_optimization": {
+        "stage": 1, 
+        "overlap_comm": true, 
+        "contiguous_gradients": true, 
+        "reduce_bucket_size": 5.000000e+09, 
+        "prefetch_bucket_size": 5.000000e+09
+    }, 
+    "gradient_checkpointing": {
+        "enable": true
+    }
+}
 [rank3]: Traceback (most recent call last):
 [rank3]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
 [rank3]:     main()
-[rank3]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
-[rank3]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank3]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank3]:     engine = DeepSpeedEngine(args=args,
-[rank3]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
-[rank3]:     self._configure_optimizer(optimizer, model_parameters)
-[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
-[rank3]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
-[rank3]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
-[rank3]:     optimizer = FusedAdam(
-[rank3]:                 ^^^^^^^^^^
-[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
-[rank3]:     fused_adam_cuda = FusedAdamBuilder().load()
-[rank3]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
-[rank3]:     op_module = importlib.import_module(self.absolute_name())
-[rank3]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
-[rank3]:     return _bootstrap._gcd_import(name[level:], package, level)
-[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank3]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
-[rank3]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
-[rank3]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
-[rank3]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
-[rank3]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
-[rank3]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
-[rank3]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
-[rank3]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
+[rank3]:   File "/work/u8644434/LLM/run/pretrain.py", line 107, in main
+[rank3]:     loss_val = train_step(ds_engine, inputs, labels)
+[rank3]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/work/u8644434/LLM/run/pretrain.py", line 44, in train_step
+[rank3]:     ds_engine.backward(loss)
+[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[rank3]:     ret_val = func(*args, **kwargs)
+[rank3]:               ^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2267, in backward
+[rank3]:     self._do_optimizer_backward(loss, retain_graph)
+[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2213, in _do_optimizer_backward
+[rank3]:     self.optimizer.backward(loss, retain_graph=retain_graph)
+[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2184, in backward
+[rank3]:     self.loss_scaler.backward(loss.float(), retain_graph=retain_graph)
+[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/fp16/loss_scaler.py", line 65, in backward
+[rank3]:     scaled_loss.backward(retain_graph=retain_graph)
+[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank3]:     torch.autograd.backward(
+[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank3]:     _engine_run_backward(
+[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank3]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 974, in grad_handling_hook
+[rank3]:     self.process_gradients(param, i)
+[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1497, in process_gradients
+[rank3]:     self.backward_prologue()
+[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2158, in backward_prologue
+[rank3]:     buf_1 = torch.empty(int(self.reduce_bucket_size),
+[rank3]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.31 GiB. GPU 3 has a total capacity of 31.74 GiB of which 3.64 GiB is free. Including non-PyTorch memory, this process has 28.09 GiB memory in use. Of the allocated memory 27.25 GiB is allocated by PyTorch, and 69.27 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
 [rank6]: Traceback (most recent call last):
 [rank6]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
 [rank6]:     main()
-[rank6]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
-[rank6]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank6]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank6]:     engine = DeepSpeedEngine(args=args,
-[rank6]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
-[rank6]:     self._configure_optimizer(optimizer, model_parameters)
-[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
-[rank6]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
-[rank6]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
-[rank6]:     optimizer = FusedAdam(
-[rank6]:                 ^^^^^^^^^^
-[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
-[rank6]:     fused_adam_cuda = FusedAdamBuilder().load()
-[rank6]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
-[rank6]:     op_module = importlib.import_module(self.absolute_name())
-[rank6]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
-[rank6]:     return _bootstrap._gcd_import(name[level:], package, level)
-[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank6]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
-[rank6]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
-[rank6]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
-[rank6]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
-[rank6]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
-[rank6]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
-[rank6]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
-[rank6]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
+[rank6]:   File "/work/u8644434/LLM/run/pretrain.py", line 107, in main
+[rank6]:     loss_val = train_step(ds_engine, inputs, labels)
+[rank6]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/work/u8644434/LLM/run/pretrain.py", line 44, in train_step
+[rank6]:     ds_engine.backward(loss)
+[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[rank6]:     ret_val = func(*args, **kwargs)
+[rank6]:               ^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2267, in backward
+[rank6]:     self._do_optimizer_backward(loss, retain_graph)
+[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2213, in _do_optimizer_backward
+[rank6]:     self.optimizer.backward(loss, retain_graph=retain_graph)
+[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2184, in backward
+[rank6]:     self.loss_scaler.backward(loss.float(), retain_graph=retain_graph)
+[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/fp16/loss_scaler.py", line 65, in backward
+[rank6]:     scaled_loss.backward(retain_graph=retain_graph)
+[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank6]:     torch.autograd.backward(
+[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank6]:     _engine_run_backward(
+[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank6]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 974, in grad_handling_hook
+[rank6]:     self.process_gradients(param, i)
+[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1497, in process_gradients
+[rank6]:     self.backward_prologue()
+[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2158, in backward_prologue
+[rank6]:     buf_1 = torch.empty(int(self.reduce_bucket_size),
+[rank6]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.31 GiB. GPU 6 has a total capacity of 31.74 GiB of which 3.64 GiB is free. Including non-PyTorch memory, this process has 28.09 GiB memory in use. Of the allocated memory 27.25 GiB is allocated by PyTorch, and 69.27 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
 [rank1]: Traceback (most recent call last):
 [rank1]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
 [rank1]:     main()
-[rank1]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
-[rank1]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank1]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank1]:     engine = DeepSpeedEngine(args=args,
-[rank1]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
-[rank1]:     self._configure_optimizer(optimizer, model_parameters)
-[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
-[rank1]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
-[rank1]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
-[rank1]:     optimizer = FusedAdam(
-[rank1]:                 ^^^^^^^^^^
-[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
-[rank1]:     fused_adam_cuda = FusedAdamBuilder().load()
-[rank1]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
-[rank1]:     op_module = importlib.import_module(self.absolute_name())
-[rank1]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
-[rank1]:     return _bootstrap._gcd_import(name[level:], package, level)
-[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank1]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
-[rank1]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
-[rank1]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
-[rank1]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
-[rank1]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
-[rank1]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
-[rank1]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
-[rank1]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
-[rank0]: Traceback (most recent call last):
-[rank0]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
-[rank0]:     main()
-[rank0]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
-[rank0]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank0]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank0]:     engine = DeepSpeedEngine(args=args,
-[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
-[rank0]:     self._configure_optimizer(optimizer, model_parameters)
-[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
-[rank0]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
-[rank0]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
-[rank0]:     optimizer = FusedAdam(
-[rank0]:                 ^^^^^^^^^^
-[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
-[rank0]:     fused_adam_cuda = FusedAdamBuilder().load()
-[rank0]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
-[rank0]:     op_module = importlib.import_module(self.absolute_name())
-[rank0]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
-[rank0]:     return _bootstrap._gcd_import(name[level:], package, level)
-[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
-[rank0]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
-[rank0]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
-[rank0]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
-[rank0]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
-[rank0]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
-[rank0]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
-[rank0]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
-[rank5]: Traceback (most recent call last):
-[rank5]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
-[rank5]:     main()
-[rank5]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
-[rank5]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank5]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank5]:     engine = DeepSpeedEngine(args=args,
-[rank5]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
-[rank5]:     self._configure_optimizer(optimizer, model_parameters)
-[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
-[rank5]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
-[rank5]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
-[rank5]:     optimizer = FusedAdam(
-[rank5]:                 ^^^^^^^^^^
-[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
-[rank5]:     fused_adam_cuda = FusedAdamBuilder().load()
-[rank5]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
-[rank5]:     op_module = importlib.import_module(self.absolute_name())
-[rank5]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
-[rank5]:     return _bootstrap._gcd_import(name[level:], package, level)
-[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank5]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
-[rank5]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
-[rank5]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
-[rank5]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
-[rank5]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
-[rank5]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
-[rank5]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
-[rank5]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
-[rank7]: Traceback (most recent call last):
-[rank7]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
-[rank7]:     main()
-[rank7]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
-[rank7]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank7]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank7]:     engine = DeepSpeedEngine(args=args,
-[rank7]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
-[rank7]:     self._configure_optimizer(optimizer, model_parameters)
-[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
-[rank7]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
-[rank7]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
-[rank7]:     optimizer = FusedAdam(
-[rank7]:                 ^^^^^^^^^^
-[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
-[rank7]:     fused_adam_cuda = FusedAdamBuilder().load()
-[rank7]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
-[rank7]:     op_module = importlib.import_module(self.absolute_name())
-[rank7]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
-[rank7]:     return _bootstrap._gcd_import(name[level:], package, level)
-[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank7]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
-[rank7]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
-[rank7]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
-[rank7]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
-[rank7]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
-[rank7]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
-[rank7]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
-[rank7]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
+[rank1]:   File "/work/u8644434/LLM/run/pretrain.py", line 107, in main
+[rank1]:     loss_val = train_step(ds_engine, inputs, labels)
+[rank1]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/work/u8644434/LLM/run/pretrain.py", line 44, in train_step
+[rank1]:     ds_engine.backward(loss)
+[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[rank1]:     ret_val = func(*args, **kwargs)
+[rank1]:               ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2267, in backward
+[rank1]:     self._do_optimizer_backward(loss, retain_graph)
+[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2213, in _do_optimizer_backward
+[rank1]:     self.optimizer.backward(loss, retain_graph=retain_graph)
+[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2184, in backward
+[rank1]:     self.loss_scaler.backward(loss.float(), retain_graph=retain_graph)
+[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/fp16/loss_scaler.py", line 65, in backward
+[rank1]:     scaled_loss.backward(retain_graph=retain_graph)
+[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank1]:     torch.autograd.backward(
+[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank1]:     _engine_run_backward(
+[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank1]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 974, in grad_handling_hook
+[rank1]:     self.process_gradients(param, i)
+[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1497, in process_gradients
+[rank1]:     self.backward_prologue()
+[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2158, in backward_prologue
+[rank1]:     buf_1 = torch.empty(int(self.reduce_bucket_size),
+[rank1]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.31 GiB. GPU 1 has a total capacity of 31.74 GiB of which 3.64 GiB is free. Including non-PyTorch memory, this process has 28.09 GiB memory in use. Of the allocated memory 27.25 GiB is allocated by PyTorch, and 69.27 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
 [rank4]: Traceback (most recent call last):
 [rank4]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
 [rank4]:     main()
-[rank4]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
-[rank4]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank4]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank4]:     engine = DeepSpeedEngine(args=args,
-[rank4]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
-[rank4]:     self._configure_optimizer(optimizer, model_parameters)
-[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
-[rank4]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
-[rank4]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
-[rank4]:     optimizer = FusedAdam(
-[rank4]:                 ^^^^^^^^^^
-[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
-[rank4]:     fused_adam_cuda = FusedAdamBuilder().load()
-[rank4]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
-[rank4]:     op_module = importlib.import_module(self.absolute_name())
-[rank4]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
-[rank4]:     return _bootstrap._gcd_import(name[level:], package, level)
-[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank4]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
-[rank4]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
-[rank4]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
-[rank4]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
-[rank4]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
-[rank4]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
-[rank4]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
-[rank4]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
-[rank0]:[W815 19:13:15.722663640 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
-[2025-08-15 19:13:16,416] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848009
-[2025-08-15 19:13:16,643] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848010
-[2025-08-15 19:13:16,788] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848011
-[2025-08-15 19:13:16,805] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848012
-[2025-08-15 19:13:16,841] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848013
-[2025-08-15 19:13:16,853] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848014
-[2025-08-15 19:13:16,853] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848015
-[2025-08-15 19:13:16,863] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848016
-[2025-08-15 19:13:16,872] [ERROR] [launch.py:325:sigkill_handler] ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=7', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100'] exits with return code = 1
+[rank4]:   File "/work/u8644434/LLM/run/pretrain.py", line 107, in main
+[rank4]:     loss_val = train_step(ds_engine, inputs, labels)
+[rank4]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/work/u8644434/LLM/run/pretrain.py", line 44, in train_step
+[rank4]:     ds_engine.backward(loss)
+[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[rank4]:     ret_val = func(*args, **kwargs)
+[rank4]:               ^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2267, in backward
+[rank4]:     self._do_optimizer_backward(loss, retain_graph)
+[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2213, in _do_optimizer_backward
+[rank4]:     self.optimizer.backward(loss, retain_graph=retain_graph)
+[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2184, in backward
+[rank4]:     self.loss_scaler.backward(loss.float(), retain_graph=retain_graph)
+[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/fp16/loss_scaler.py", line 65, in backward
+[rank4]:     scaled_loss.backward(retain_graph=retain_graph)
+[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank4]:     torch.autograd.backward(
+[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank4]:     _engine_run_backward(
+[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank4]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 974, in grad_handling_hook
+[rank4]:     self.process_gradients(param, i)
+[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1497, in process_gradients
+[rank4]:     self.backward_prologue()
+[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2158, in backward_prologue
+[rank4]:     buf_1 = torch.empty(int(self.reduce_bucket_size),
+[rank4]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.31 GiB. GPU 4 has a total capacity of 31.74 GiB of which 3.64 GiB is free. Including non-PyTorch memory, this process has 28.09 GiB memory in use. Of the allocated memory 27.25 GiB is allocated by PyTorch, and 69.27 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
+[rank2]:     main()
+[rank2]:   File "/work/u8644434/LLM/run/pretrain.py", line 107, in main
+[rank2]:     loss_val = train_step(ds_engine, inputs, labels)
+[rank2]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/work/u8644434/LLM/run/pretrain.py", line 44, in train_step
+[rank2]:     ds_engine.backward(loss)
+[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[rank2]:     ret_val = func(*args, **kwargs)
+[rank2]:               ^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2267, in backward
+[rank2]:     self._do_optimizer_backward(loss, retain_graph)
+[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2213, in _do_optimizer_backward
+[rank2]:     self.optimizer.backward(loss, retain_graph=retain_graph)
+[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2184, in backward
+[rank2]:     self.loss_scaler.backward(loss.float(), retain_graph=retain_graph)
+[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/fp16/loss_scaler.py", line 65, in backward
+[rank2]:     scaled_loss.backward(retain_graph=retain_graph)
+[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank2]:     torch.autograd.backward(
+[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank2]:     _engine_run_backward(
+[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank2]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 974, in grad_handling_hook
+[rank2]:     self.process_gradients(param, i)
+[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1497, in process_gradients
+[rank2]:     self.backward_prologue()
+[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2158, in backward_prologue
+[rank2]:     buf_1 = torch.empty(int(self.reduce_bucket_size),
+[rank2]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.31 GiB. GPU 2 has a total capacity of 31.74 GiB of which 3.64 GiB is free. Including non-PyTorch memory, this process has 28.09 GiB memory in use. Of the allocated memory 27.25 GiB is allocated by PyTorch, and 69.27 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank5]: Traceback (most recent call last):
+[rank5]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
+[rank5]:     main()
+[rank5]:   File "/work/u8644434/LLM/run/pretrain.py", line 107, in main
+[rank5]:     loss_val = train_step(ds_engine, inputs, labels)
+[rank5]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/work/u8644434/LLM/run/pretrain.py", line 44, in train_step
+[rank5]:     ds_engine.backward(loss)
+[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[rank5]:     ret_val = func(*args, **kwargs)
+[rank5]:               ^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2267, in backward
+[rank5]:     self._do_optimizer_backward(loss, retain_graph)
+[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2213, in _do_optimizer_backward
+[rank5]:     self.optimizer.backward(loss, retain_graph=retain_graph)
+[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2184, in backward
+[rank5]:     self.loss_scaler.backward(loss.float(), retain_graph=retain_graph)
+[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/fp16/loss_scaler.py", line 65, in backward
+[rank5]:     scaled_loss.backward(retain_graph=retain_graph)
+[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank5]:     torch.autograd.backward(
+[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank5]:     _engine_run_backward(
+[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank5]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 974, in grad_handling_hook
+[rank5]:     self.process_gradients(param, i)
+[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1497, in process_gradients
+[rank5]:     self.backward_prologue()
+[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2158, in backward_prologue
+[rank5]:     buf_1 = torch.empty(int(self.reduce_bucket_size),
+[rank5]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.31 GiB. GPU 5 has a total capacity of 31.74 GiB of which 3.64 GiB is free. Including non-PyTorch memory, this process has 28.09 GiB memory in use. Of the allocated memory 27.25 GiB is allocated by PyTorch, and 69.27 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank7]: Traceback (most recent call last):
+[rank7]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
+[rank7]:     main()
+[rank7]:   File "/work/u8644434/LLM/run/pretrain.py", line 107, in main
+[rank7]:     loss_val = train_step(ds_engine, inputs, labels)
+[rank7]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/work/u8644434/LLM/run/pretrain.py", line 44, in train_step
+[rank7]:     ds_engine.backward(loss)
+[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[rank7]:     ret_val = func(*args, **kwargs)
+[rank7]:               ^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2267, in backward
+[rank7]:     self._do_optimizer_backward(loss, retain_graph)
+[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2213, in _do_optimizer_backward
+[rank7]:     self.optimizer.backward(loss, retain_graph=retain_graph)
+[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2184, in backward
+[rank7]:     self.loss_scaler.backward(loss.float(), retain_graph=retain_graph)
+[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/fp16/loss_scaler.py", line 65, in backward
+[rank7]:     scaled_loss.backward(retain_graph=retain_graph)
+[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank7]:     torch.autograd.backward(
+[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank7]:     _engine_run_backward(
+[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank7]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 974, in grad_handling_hook
+[rank7]:     self.process_gradients(param, i)
+[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1497, in process_gradients
+[rank7]:     self.backward_prologue()
+[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2158, in backward_prologue
+[rank7]:     buf_1 = torch.empty(int(self.reduce_bucket_size),
+[rank7]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.31 GiB. GPU 7 has a total capacity of 31.74 GiB of which 3.64 GiB is free. Including non-PyTorch memory, this process has 28.09 GiB memory in use. Of the allocated memory 27.25 GiB is allocated by PyTorch, and 69.27 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
+[rank0]:     main()
+[rank0]:   File "/work/u8644434/LLM/run/pretrain.py", line 107, in main
+[rank0]:     loss_val = train_step(ds_engine, inputs, labels)
+[rank0]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/work/u8644434/LLM/run/pretrain.py", line 44, in train_step
+[rank0]:     ds_engine.backward(loss)
+[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/utils/nvtx.py", line 20, in wrapped_fn
+[rank0]:     ret_val = func(*args, **kwargs)
+[rank0]:               ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2267, in backward
+[rank0]:     self._do_optimizer_backward(loss, retain_graph)
+[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 2213, in _do_optimizer_backward
+[rank0]:     self.optimizer.backward(loss, retain_graph=retain_graph)
+[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2184, in backward
+[rank0]:     self.loss_scaler.backward(loss.float(), retain_graph=retain_graph)
+[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/fp16/loss_scaler.py", line 65, in backward
+[rank0]:     scaled_loss.backward(retain_graph=retain_graph)
+[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/_tensor.py", line 647, in backward
+[rank0]:     torch.autograd.backward(
+[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/__init__.py", line 354, in backward
+[rank0]:     _engine_run_backward(
+[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/autograd/graph.py", line 829, in _engine_run_backward
+[rank0]:     return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 974, in grad_handling_hook
+[rank0]:     self.process_gradients(param, i)
+[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 1497, in process_gradients
+[rank0]:     self.backward_prologue()
+[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/zero/stage_1_and_2.py", line 2158, in backward_prologue
+[rank0]:     buf_1 = torch.empty(int(self.reduce_bucket_size),
+[rank0]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 9.31 GiB. GPU 0 has a total capacity of 31.74 GiB of which 3.64 GiB is free. Including non-PyTorch memory, this process has 28.09 GiB memory in use. Of the allocated memory 27.25 GiB is allocated by PyTorch, and 69.27 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank0]:[W815 20:41:15.817769962 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+[2025-08-15 20:41:16,976] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 4034954
+[2025-08-15 20:41:17,203] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 4034955
+[2025-08-15 20:41:17,470] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 4034956
+[2025-08-15 20:41:17,489] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 4034957
+[2025-08-15 20:41:17,489] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 4034958
+[2025-08-15 20:41:17,499] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 4034959
+[2025-08-15 20:41:17,561] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 4034960
+[2025-08-15 20:41:17,824] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 4034961
+[2025-08-15 20:41:17,835] [ERROR] [launch.py:325:sigkill_handler] ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=7', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100'] exits with return code = 1

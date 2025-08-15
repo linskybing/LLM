@@ -6,26 +6,20 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --gres=gpu:8
 #SBATCH -J train
-#SBATCH -o /work/u8644434/LLM/logs/train_zero_1_nv.out
+#SBATCH -o /work/u8644434/LLM/logs/train_zero_3_nv.out
 
 module purge
 module load git/2.44.0 cmake
-module load nvhpc-24.11_hpcx-2.20_cuda-12.6
+module load cuda/12.8
 spack load gcc@13.4.0
-
 source ~/miniconda3/etc/profile.d/conda.sh
-conda activate ds
+conda activate deepspeed
 
-export CUDA_HOME="/work/HPC_SYS/twnia2/pkg-rocky8/nvidia/hpc_sdk/Linux_x86_64/24.11/cuda/12.6/"
-export CC=gcc
-export CXX=g++
 export PYTORCH_CUDA_ALLOC_CONF="max_split_size_mb:128,garbage_collection_threshold:0.7,expandable_segments:True"
 
 echo "CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES"
 nvidia-smi
 python -c "import torch; print(torch.cuda.is_available(), torch.cuda.device_count())"
-
-export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
 
 export ROOT="/work/u8644434/LLM"
 export LOGS=$ROOT/logs
@@ -33,7 +27,7 @@ export CONFIG=$ROOT/configs
 export RUN=$ROOT/run
 
 deepspeed $RUN/pretrain.py \
-    --deepspeed_config $CONFIG/zero_1.json \
+    --deepspeed_config $CONFIG/zero_3.json \
     --batch_size 1 \
     --seq_len 350 \
     --total_steps 100 
