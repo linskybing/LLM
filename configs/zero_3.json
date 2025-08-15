@@ -1,0 +1,24 @@
+{
+  "train_batch_size": 8,
+  "train_micro_batch_size_per_gpu": 1,
+  "steps_per_print": 1,
+  "optimizer": {
+    "type": "AdamW",
+    "params": {
+      "lr": 1e-5
+    }
+  },
+  "fp16": {
+    "enabled": true
+  },
+  "zero_optimization": {
+      "stage": 3,
+      "overlap_comm": true,
+      "contiguous_gradients": true,
+      "reduce_bucket_size": 5e9,
+      "prefetch_bucket_size": 5e9
+  },
+  "gradient_checkpointing": {
+    "enable": true
+  }
+}
