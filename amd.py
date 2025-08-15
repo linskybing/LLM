@@ -1,13 +1,14 @@
 import argparse
 import deepspeed
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM, LlamaTokenizer
+from transformers import AutoTokenizer, AutoModelForCausalLM
 import random
 import nltk
 import time
 
 nltk.download('words')
 from nltk.corpus import words
+
 word_list = words.words()
 
 def generate_random_text(tokenizer, target_token_length=350, max_trials=10):
@@ -22,8 +23,8 @@ def generate_random_text(tokenizer, target_token_length=350, max_trials=10):
             return tokens.input_ids.squeeze(0)
     return tokens.input_ids.squeeze(0)
 
-def generate_batch(tokenizer, batch_size, seq_len, device):
-    return torch.stack([generate_random_text(tokenizer, seq_len) for _ in range(batch_size)]).to(device)
+def generate_batch(tokenizer, batch_size, seq_len):
+    return torch.stack([generate_random_text(tokenizer, seq_len) for _ in range(batch_size)])
 
 def train_step(ds_engine, inputs, labels):
     outputs = ds_engine(inputs, labels=labels)
@@ -48,38 +49,59 @@ def main():
     print(f"Using device: {device}")
     print(f"Loading model and tokenizer: {args.model_name}")
 
-    tokenizer = LlamaTokenizer.from_pretrained(args.model_name)
-    model = AutoModelForCausalLM.from_pretrained(args.model_name).to(device)
+    tokenizer = AutoTokenizer.from_pretrained(args.model_name)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
 
+    model = AutoModelForCausalLM.from_pretrained(
+        args.model_name,
+        torch_dtype=torch.float16,
+        device_map="auto",
+        attn_implementation="flash_attention_2"
+    )
+    model.gradient_checkpointing_enable()
+    torch.cuda.empty_cache()
+
+    model_parameters = filter(lambda p: p.requires_grad, model.parameters())
     ds_engine, optimizer, _, _ = deepspeed.initialize(
         model=model,
+        model_parameters=model_parameters,
         config=args.deepspeed_config if hasattr(args, 'deepspeed_config') else None
     )
 
     model.train()
 
-    inputs = generate_batch(tokenizer, args.batch_size, args.seq_len, device)
-    labels = inputs.clone()
-
     start_time = time.time()
+    total_tokens = 0.0
+    total_steps_time = 0.0
 
     for step in range(args.total_steps):
+        inputs = generate_batch(tokenizer, args.batch_size, args.seq_len)
+        labels = inputs.clone()
+
         torch.cuda.synchronize()
         step_start = time.time()
 
-        loss_val = train_step(ds_engine, inputs, labels)
+        loss_val = train_step(ds_engine, inputs.to(ds_engine.local_rank), labels.to(ds_engine.local_rank))
 
         torch.cuda.synchronize()
         step_time = time.time() - step_start
 
-        tokens_per_sec = (args.batch_size * args.seq_len) / step_time
+        tokens_this_step = args.batch_size * args.seq_len
+        tokens_per_sec = tokens_this_step / step_time
+        total_tokens += tokens_this_step
+        total_steps_time += step_time
+
         mem_gb = torch.cuda.memory_allocated() / 1024**3
+        max_mem_gb = torch.cuda.max_memory_allocated() / 1024**3
+        print(f"[Step {step}/{args.total_steps}] Loss: {loss_val:.4f} | Tokens/s: {tokens_per_sec:.2f} | GPU Mem (GB): {mem_gb:.2f} | Peak Mem: {max_mem_gb:.2f}")
 
-        if step % 10 == 0 or step == args.total_steps - 1:
-            print(f"[Step {step}/{args.total_steps}] Loss: {loss_val:.4f} | Tokens/s: {tokens_per_sec:.2f} | GPU Mem (GB): {mem_gb:.2f}")
-
+    avg_tokens_per_sec = total_tokens / total_steps_time
     total_time = time.time() - start_time
+
     print(f"Training done in {total_time:.2f} seconds.")
+    print(f"Avg Tokens/s: {avg_tokens_per_sec:.2f}")
+    print(f"Peak GPU Mem (GB): {torch.cuda.max_memory_allocated() / 1024**3 :.2f}")
 
 if __name__ == "__main__":
     main()
