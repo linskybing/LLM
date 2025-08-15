@@ -21,5 +21,5 @@ export CUDA_HOME="/work/HPC_SYS/twnia2/pkg-rocky8/nvidia/hpc_sdk/Linux_x86_64/24
 export CC=gcc
 export CXX=g++
 
-deepspeed --num_gpus=1 pretrain.py \
-  --batch_size 1 --seq_len 350 --total_steps 100 --deepspeed_config zero_3.json
+deepspeed --num_gpus=1 --master_port 29501 pretrain.py \
+  --batch_size 1 --seq_len 350 --total_steps 100 --deepspeed_config zero_3ORF.json
