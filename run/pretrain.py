@@ -71,9 +71,8 @@ def main():
     model = AutoModelForCausalLM.from_pretrained(
         args.model_name,
         device_map=None,
-        torch_dtype=torch.float16
+        use_cache=False
     )
-    model.gradient_checkpointing_enable()  # 節省顯存
     model_parameters = filter(lambda p: p.requires_grad, model.parameters())
 
     # -----------------------------
