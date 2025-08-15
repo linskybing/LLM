@@ -1,0 +1,418 @@
++--------------------------------------------------+
+| Nvidia hpc sdk v24.11 with cuda v12.6 is loaded. |
++--------------------------------------------------+
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+Fri Aug 15 19:11:56 2025       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.161.08             Driver Version: 535.161.08   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  Tesla V100-SXM2-32GB           On  | 00000000:1B:00.0 Off |                    0 |
+| N/A   27C    P0              40W / 300W |      0MiB / 32768MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   1  Tesla V100-SXM2-32GB           On  | 00000000:1C:00.0 Off |                    0 |
+| N/A   26C    P0              40W / 300W |      0MiB / 32768MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   2  Tesla V100-SXM2-32GB           On  | 00000000:3D:00.0 Off |                    0 |
+| N/A   27C    P0              42W / 300W |      0MiB / 32768MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   3  Tesla V100-SXM2-32GB           On  | 00000000:3E:00.0 Off |                    0 |
+| N/A   27C    P0              42W / 300W |      0MiB / 32768MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   4  Tesla V100-SXM2-32GB           On  | 00000000:B1:00.0 Off |                    0 |
+| N/A   27C    P0              42W / 300W |      0MiB / 32768MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   5  Tesla V100-SXM2-32GB           On  | 00000000:B2:00.0 Off |                    0 |
+| N/A   27C    P0              43W / 300W |      0MiB / 32768MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   6  Tesla V100-SXM2-32GB           On  | 00000000:DB:00.0 Off |                    0 |
+| N/A   28C    P0              41W / 300W |      0MiB / 32768MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   7  Tesla V100-SXM2-32GB           On  | 00000000:DC:00.0 Off |                    0 |
+| N/A   25C    P0              42W / 300W |      0MiB / 32768MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+True 8
+[2025-08-15 19:12:00,914] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 19:12:05,255] [WARNING] [runner.py:215:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+Detected VISIBLE_DEVICES=0,1,2,3,4,5,6,7: setting --include=localhost:0,1,2,3,4,5,6,7
+[2025-08-15 19:12:05,256] [INFO] [runner.py:605:main] cmd = /home/u8644434/miniconda3/envs/ds/bin/python3.12 -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMSwgMiwgMywgNCwgNSwgNiwgN119 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None /work/u8644434/LLM/run/pretrain.py --deepspeed_config /work/u8644434/LLM/configs/zero_1.json --batch_size 1 --seq_len 350 --total_steps 100
+[2025-08-15 19:12:06,997] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 19:12:11,394] [INFO] [launch.py:139:main] 0 HPCX_NCCL_RDMA_SHARP_PLUGIN_DIR=/work/HPC_SYS/twnia2/pkg-rocky8/nvidia/hpc_sdk/Linux_x86_64/24.11/comm_libs/12.6/hpcx/hpcx-2.20/nccl_rdma_sharp_plugin
+[2025-08-15 19:12:11,395] [INFO] [launch.py:146:main] WORLD INFO DICT: {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]}
+[2025-08-15 19:12:11,395] [INFO] [launch.py:152:main] nnodes=1, num_local_procs=8, node_rank=0
+[2025-08-15 19:12:11,395] [INFO] [launch.py:163:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]})
+[2025-08-15 19:12:11,395] [INFO] [launch.py:164:main] dist_world_size=8
+[2025-08-15 19:12:11,395] [INFO] [launch.py:168:main] Setting CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+[2025-08-15 19:12:11,396] [INFO] [launch.py:256:main] process 3848009 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=0', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 19:12:11,397] [INFO] [launch.py:256:main] process 3848010 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=1', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 19:12:11,398] [INFO] [launch.py:256:main] process 3848011 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=2', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 19:12:11,399] [INFO] [launch.py:256:main] process 3848012 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=3', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 19:12:11,399] [INFO] [launch.py:256:main] process 3848013 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=4', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 19:12:11,400] [INFO] [launch.py:256:main] process 3848014 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=5', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 19:12:11,403] [INFO] [launch.py:256:main] process 3848015 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=6', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 19:12:11,409] [INFO] [launch.py:256:main] process 3848016 spawned with command: ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=7', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-15 19:12:13,833] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 19:12:13,897] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 19:12:13,943] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 19:12:14,088] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 19:12:14,130] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 19:12:14,165] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 19:12:14,171] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-15 19:12:14,258] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+[nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s][nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+[nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+[nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s][nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+[nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+[nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:16<00:16, 16.99s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:17<00:17, 17.75s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:18<00:18, 18.01s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:18<00:18, 18.04s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:18<00:18, 18.32s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:18<00:18, 18.24s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:18<00:18, 18.25s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:18<00:18, 18.56s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.55s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.52s/it]
+[2025-08-15 19:12:46,290] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
+[2025-08-15 19:12:46,291] [INFO] [comm.py:675:init_distributed] cdb=None
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.65s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.80s/it]
+[2025-08-15 19:12:47,756] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
+[2025-08-15 19:12:47,757] [INFO] [comm.py:675:init_distributed] cdb=None
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.59s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.72s/it]
+[2025-08-15 19:12:48,228] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
+[2025-08-15 19:12:48,228] [INFO] [comm.py:675:init_distributed] cdb=None
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.57s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.69s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.64s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.79s/it]
+[2025-08-15 19:12:48,690] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
+[2025-08-15 19:12:48,691] [INFO] [comm.py:675:init_distributed] cdb=None
+[2025-08-15 19:12:48,710] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
+[2025-08-15 19:12:48,710] [INFO] [comm.py:675:init_distributed] cdb=None
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.32s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.51s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.36s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.54s/it]
+Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 10.35s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:23<00:00, 11.58s/it]
+[2025-08-15 19:12:49,306] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
+[2025-08-15 19:12:49,306] [INFO] [comm.py:675:init_distributed] cdb=None
+[2025-08-15 19:12:49,306] [INFO] [comm.py:706:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+[2025-08-15 19:12:49,366] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
+[2025-08-15 19:12:49,376] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
+[2025-08-15 19:12:49,376] [INFO] [comm.py:675:init_distributed] cdb=None
+[2025-08-15 19:12:49,378] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
+[2025-08-15 19:12:49,444] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
+[2025-08-15 19:12:49,449] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.0+720787e7, git-hash=720787e7, git-branch=heads/v0.17.4
+[2025-08-15 19:12:49,450] [INFO] [comm.py:675:init_distributed] cdb=None
+[2025-08-15 19:12:49,452] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
+[2025-08-15 19:12:49,531] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
+[2025-08-15 19:12:49,757] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
+[2025-08-15 19:12:50,825] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
+[2025-08-15 19:12:50,829] [INFO] [config.py:744:__init__] Config mesh_device None world_size = 8
+[2025-08-15 19:13:11,631] [INFO] [engine.py:1313:_configure_distributed_model] ********** distributed groups summary **********
+	 self.dp_world_size=8
+	 self.mp_world_size=1
+	 self.seq_dp_world_size=8
+	 self.sequence_parallel_size=1
+***********************************************
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
+[rank2]:     main()
+[rank2]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
+[rank2]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
+[rank2]:                                  ^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank2]:     engine = DeepSpeedEngine(args=args,
+[rank2]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
+[rank2]:     self._configure_optimizer(optimizer, model_parameters)
+[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
+[rank2]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
+[rank2]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
+[rank2]:     optimizer = FusedAdam(
+[rank2]:                 ^^^^^^^^^^
+[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
+[rank2]:     fused_adam_cuda = FusedAdamBuilder().load()
+[rank2]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
+[rank2]:     op_module = importlib.import_module(self.absolute_name())
+[rank2]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
+[rank2]:     return _bootstrap._gcd_import(name[level:], package, level)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[rank2]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[rank2]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[rank2]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
+[rank2]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
+[rank2]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
+[rank2]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[rank2]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
+[2025-08-15 19:13:13,859] [INFO] [logging.py:107:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
+[rank3]:     main()
+[rank3]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
+[rank3]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
+[rank3]:                                  ^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank3]:     engine = DeepSpeedEngine(args=args,
+[rank3]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
+[rank3]:     self._configure_optimizer(optimizer, model_parameters)
+[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
+[rank3]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
+[rank3]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
+[rank3]:     optimizer = FusedAdam(
+[rank3]:                 ^^^^^^^^^^
+[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
+[rank3]:     fused_adam_cuda = FusedAdamBuilder().load()
+[rank3]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
+[rank3]:     op_module = importlib.import_module(self.absolute_name())
+[rank3]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
+[rank3]:     return _bootstrap._gcd_import(name[level:], package, level)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[rank3]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[rank3]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[rank3]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
+[rank3]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
+[rank3]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
+[rank3]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[rank3]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
+[rank6]: Traceback (most recent call last):
+[rank6]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
+[rank6]:     main()
+[rank6]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
+[rank6]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
+[rank6]:                                  ^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank6]:     engine = DeepSpeedEngine(args=args,
+[rank6]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
+[rank6]:     self._configure_optimizer(optimizer, model_parameters)
+[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
+[rank6]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
+[rank6]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
+[rank6]:     optimizer = FusedAdam(
+[rank6]:                 ^^^^^^^^^^
+[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
+[rank6]:     fused_adam_cuda = FusedAdamBuilder().load()
+[rank6]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
+[rank6]:     op_module = importlib.import_module(self.absolute_name())
+[rank6]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
+[rank6]:     return _bootstrap._gcd_import(name[level:], package, level)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[rank6]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[rank6]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[rank6]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
+[rank6]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
+[rank6]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
+[rank6]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[rank6]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
+[rank1]:     main()
+[rank1]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
+[rank1]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
+[rank1]:                                  ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank1]:     engine = DeepSpeedEngine(args=args,
+[rank1]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
+[rank1]:     self._configure_optimizer(optimizer, model_parameters)
+[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
+[rank1]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
+[rank1]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
+[rank1]:     optimizer = FusedAdam(
+[rank1]:                 ^^^^^^^^^^
+[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
+[rank1]:     fused_adam_cuda = FusedAdamBuilder().load()
+[rank1]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
+[rank1]:     op_module = importlib.import_module(self.absolute_name())
+[rank1]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
+[rank1]:     return _bootstrap._gcd_import(name[level:], package, level)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[rank1]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[rank1]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[rank1]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
+[rank1]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
+[rank1]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
+[rank1]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[rank1]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
+[rank0]:     main()
+[rank0]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
+[rank0]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
+[rank0]:                                  ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank0]:     engine = DeepSpeedEngine(args=args,
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
+[rank0]:     self._configure_optimizer(optimizer, model_parameters)
+[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
+[rank0]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
+[rank0]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
+[rank0]:     optimizer = FusedAdam(
+[rank0]:                 ^^^^^^^^^^
+[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
+[rank0]:     fused_adam_cuda = FusedAdamBuilder().load()
+[rank0]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
+[rank0]:     op_module = importlib.import_module(self.absolute_name())
+[rank0]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
+[rank0]:     return _bootstrap._gcd_import(name[level:], package, level)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[rank0]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[rank0]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[rank0]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
+[rank0]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
+[rank0]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
+[rank0]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[rank0]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
+[rank5]: Traceback (most recent call last):
+[rank5]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
+[rank5]:     main()
+[rank5]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
+[rank5]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
+[rank5]:                                  ^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank5]:     engine = DeepSpeedEngine(args=args,
+[rank5]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
+[rank5]:     self._configure_optimizer(optimizer, model_parameters)
+[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
+[rank5]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
+[rank5]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
+[rank5]:     optimizer = FusedAdam(
+[rank5]:                 ^^^^^^^^^^
+[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
+[rank5]:     fused_adam_cuda = FusedAdamBuilder().load()
+[rank5]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
+[rank5]:     op_module = importlib.import_module(self.absolute_name())
+[rank5]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
+[rank5]:     return _bootstrap._gcd_import(name[level:], package, level)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[rank5]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[rank5]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[rank5]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
+[rank5]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
+[rank5]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
+[rank5]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[rank5]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
+[rank7]: Traceback (most recent call last):
+[rank7]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
+[rank7]:     main()
+[rank7]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
+[rank7]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
+[rank7]:                                  ^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank7]:     engine = DeepSpeedEngine(args=args,
+[rank7]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
+[rank7]:     self._configure_optimizer(optimizer, model_parameters)
+[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
+[rank7]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
+[rank7]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
+[rank7]:     optimizer = FusedAdam(
+[rank7]:                 ^^^^^^^^^^
+[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
+[rank7]:     fused_adam_cuda = FusedAdamBuilder().load()
+[rank7]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
+[rank7]:     op_module = importlib.import_module(self.absolute_name())
+[rank7]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
+[rank7]:     return _bootstrap._gcd_import(name[level:], package, level)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[rank7]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[rank7]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[rank7]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
+[rank7]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
+[rank7]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
+[rank7]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[rank7]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
+[rank4]: Traceback (most recent call last):
+[rank4]:   File "/work/u8644434/LLM/run/pretrain.py", line 135, in <module>
+[rank4]:     main()
+[rank4]:   File "/work/u8644434/LLM/run/pretrain.py", line 81, in main
+[rank4]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
+[rank4]:                                  ^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
+[rank4]:     engine = DeepSpeedEngine(args=args,
+[rank4]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 326, in __init__
+[rank4]:     self._configure_optimizer(optimizer, model_parameters)
+[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1391, in _configure_optimizer
+[rank4]:     basic_optimizer = self._configure_basic_optimizer(model_parameters)
+[rank4]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1468, in _configure_basic_optimizer
+[rank4]:     optimizer = FusedAdam(
+[rank4]:                 ^^^^^^^^^^
+[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam.py", line 94, in __init__
+[rank4]:     fused_adam_cuda = FusedAdamBuilder().load()
+[rank4]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/op_builder/builder.py", line 536, in load
+[rank4]:     op_module = importlib.import_module(self.absolute_name())
+[rank4]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/u8644434/miniconda3/envs/ds/lib/python3.12/importlib/__init__.py", line 90, in import_module
+[rank4]:     return _bootstrap._gcd_import(name[level:], package, level)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+[rank4]:   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+[rank4]:   File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+[rank4]:   File "<frozen importlib._bootstrap>", line 921, in _load_unlocked
+[rank4]:   File "<frozen importlib._bootstrap>", line 813, in module_from_spec
+[rank4]:   File "<frozen importlib._bootstrap_external>", line 1293, in create_module
+[rank4]:   File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+[rank4]: ImportError: /home/u8644434/miniconda3/envs/ds/lib/python3.12/site-packages/deepspeed/ops/adam/fused_adam_op.cpython-312-x86_64-linux-gnu.so: undefined symbol: _ZN3c106detail23torchInternalAssertFailEPKcS2_jS2_RKSs
+[rank0]:[W815 19:13:15.722663640 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+[2025-08-15 19:13:16,416] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848009
+[2025-08-15 19:13:16,643] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848010
+[2025-08-15 19:13:16,788] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848011
+[2025-08-15 19:13:16,805] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848012
+[2025-08-15 19:13:16,841] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848013
+[2025-08-15 19:13:16,853] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848014
+[2025-08-15 19:13:16,853] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848015
+[2025-08-15 19:13:16,863] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 3848016
+[2025-08-15 19:13:16,872] [ERROR] [launch.py:325:sigkill_handler] ['/home/u8644434/miniconda3/envs/ds/bin/python3.12', '-u', '/work/u8644434/LLM/run/pretrain.py', '--local_rank=7', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_1.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100'] exits with return code = 1

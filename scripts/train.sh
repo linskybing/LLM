@@ -25,15 +25,15 @@ echo "CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES"
 nvidia-smi
 python -c "import torch; print(torch.cuda.is_available(), torch.cuda.device_count())"
 
-export LD_LIBRARY_PATH=$CONDA_PREFIX:$LD_LIBRARY_PATH
-export LD_PRELOAD=$CONDA_PREFIX/lib/libstdc++.so
+export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
 
 export ROOT="/work/u8644434/LLM"
 export LOGS=$ROOT/logs
-export SCRIPT=$ROOT/scripts
+export CONFIG=$ROOT/configs
+export RUN=$ROOT/run
 
-deepspeed pretrain.py \
-    --deepspeed_config $SCRIPT/zero_1.json \
+deepspeed $RUN/pretrain.py \
+    --deepspeed_config $CONFIG/zero_1.json \
     --batch_size 1 \
     --seq_len 350 \
     --total_steps 100 
