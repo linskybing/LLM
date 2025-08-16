@@ -71,7 +71,6 @@ def main():
     model = AutoModelForCausalLM.from_pretrained(
         args.model_name,
         torch_dtype=torch.bfloat16,
-        attn_implementation="flash_attention_2",
         use_cache=False
     )
     model_parameters = filter(lambda p: p.requires_grad, model.parameters())

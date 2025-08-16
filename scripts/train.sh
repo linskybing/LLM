@@ -6,7 +6,7 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --gres=gpu:8
 #SBATCH -J train
-#SBATCH -o /work/u8644434/LLM/logs/train_zero_3_nv.out
+#SBATCH -o /work/u8644434/LLM/logs/zero_3_nv.out
 
 module purge
 module load git/2.44.0 cmake

@@ -1,7 +1,8 @@
 {
-  "train_batch_size": 2,
+  "train_batch_size": 8,
   "train_micro_batch_size_per_gpu": 1,
   "steps_per_print": 1,
+  "gradient_accumulation_steps": 1,
   "optimizer": {
     "type": "Adam",
     "params": {
@@ -40,6 +41,14 @@
         "device": "cpu",
         "pin_memory": true
     }
+  },
+  "activation_checkpointing": {
+    "partition_activations": true,
+    "contiguous_memory_optimization": true,
+    "cpu_checkpointing": false,
+    "number_checkpoints": null,
+    "synchronize_checkpoint_boundary": true,
+    "profile": false
   },
   "gradient_checkpointing": {
     "enable": true

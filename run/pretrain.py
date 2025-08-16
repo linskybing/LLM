@@ -71,9 +71,8 @@ def main():
     model = AutoModelForCausalLM.from_pretrained(
         args.model_name,
         device_map=None,
-        use_cache=False
+        use_cache=True
     )
-    model.gradient_checkpointing_enable()
     model_parameters = filter(lambda p: p.requires_grad, model.parameters())
 
     # -----------------------------
