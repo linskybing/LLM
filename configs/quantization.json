@@ -1,0 +1,31 @@
+{
+  "train_batch_size": 2,
+  "train_micro_batch_size_per_gpu": 1,
+  "steps_per_print": 1,
+  "optimizer": {
+    "type": "Adam",
+    "params": {
+      "lr": 1e-5,
+      "weight_decay": 0.0
+    }
+  },
+  "gradient_clipping": 1.0,
+  "quantize_training": {
+    "enabled": true,
+    "quantize_verbose": true,
+    "quantizer_kernel": true,
+    "quantize_type": "symmetric",
+    "quantize_bits": {
+      "start_bits": 16,
+      "target_bits": 8
+    },
+    "quantize_schedule": {
+      "quantize_period": 100,
+      "schedule_offset": 0
+    },
+    "quantize_groups": 8,
+    "fp16_mixed_quantize": {
+      "enabled": false
+    }
+  }
+}

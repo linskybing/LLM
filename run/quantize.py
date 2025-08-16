@@ -1,11 +1,12 @@
 import argparse
 import deepspeed
 import torch
+import torch.distributed as dist
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import random
 import time
 import nltk
-from deepspeed.accelerator import get_accelerator
+
 # NLTK words
 nltk.download('words')
 from nltk.corpus import words
@@ -38,10 +39,6 @@ def generate_batch(tokenizer, batch_size, seq_len, device):
 # Training step
 # -----------------------------
 def train_step(ds_engine, inputs, labels):
-    device = ds_engine.device
-    inputs = inputs.to(device)
-    labels = labels.to(device)
-
     outputs = ds_engine(inputs, labels=labels)
     loss = outputs.loss
     ds_engine.backward(loss)
@@ -58,7 +55,7 @@ def main():
     parser.add_argument('--batch_size', type=int, default=1)
     parser.add_argument('--seq_len', type=int, default=350)
     parser.add_argument('--total_steps', type=int, default=100)
-    parser.add_argument('--local_rank', type=int, default=-1, help='DeepSpeed local rank')
+    parser.add_argument('--local_rank', type=int, default=-1)
     args = parser.parse_args()
 
     # -----------------------------
@@ -71,9 +68,13 @@ def main():
     # -----------------------------
     # Model
     # -----------------------------
-    model = AutoModelForCausalLM.from_pretrained(args.model_name)
+    model = AutoModelForCausalLM.from_pretrained(
+        args.model_name,
+        torch_dtype=torch.bfloat16,
+        attn_implementation="flash_attention_2",
+        use_cache=False
+    )
     model_parameters = filter(lambda p: p.requires_grad, model.parameters())
-
     # -----------------------------
     # DeepSpeed initialize
     # -----------------------------
@@ -85,6 +86,9 @@ def main():
     )
 
     model.train()
+    
+    rank = dist.get_rank() if dist.is_initialized() else 0
+    world_size = dist.get_world_size() if dist.is_initialized() else 1
 
     # -----------------------------
     # Training loop
@@ -93,7 +97,6 @@ def main():
     total_tokens = 0.0
     total_steps_time = 0.0
 
-    warmup_steps = 30
     for step in range(args.total_steps):
         inputs = generate_batch(tokenizer, args.batch_size, args.seq_len, ds_engine.device)
         labels = inputs.clone()
@@ -106,26 +109,27 @@ def main():
         torch.cuda.synchronize()
         step_time = time.time() - step_start
 
-        tokens_this_step = args.batch_size * args.seq_len
+        local_tokens = torch.tensor([args.batch_size * args.seq_len], device=ds_engine.device)
+        if dist.is_initialized() and world_size > 1:
+            dist.all_reduce(local_tokens, op=dist.ReduceOp.SUM)
+        tokens_this_step = local_tokens.item()
+
         tokens_per_sec = tokens_this_step / step_time
+        total_tokens += tokens_this_step
+        total_steps_time += step_time
 
-        if step >= warmup_steps:
-            total_tokens += tokens_this_step
-            total_steps_time += step_time
+        if rank == 0:
+            mem_gb = torch.cuda.memory_allocated() / 1024**3
+            max_mem_gb = torch.cuda.max_memory_allocated() / 1024**3
+            print(f"[Step {step+1}/{args.total_steps}] Loss: {loss_val:.4f} | "
+                  f"Global Tokens/s: {tokens_per_sec:.2f} | GPU Mem (GB): {mem_gb:.2f} | Peak Mem: {max_mem_gb:.2f}")
 
-        mem_gb = torch.cuda.memory_allocated() / 1024**3
-        max_mem_gb = torch.cuda.max_memory_allocated() / 1024**3
-        print(f"[Step {step}/{args.total_steps}] Loss: {loss_val:.4f} | Tokens/s: {tokens_per_sec:.2f} | "
-            f"GPU Mem (GB): {mem_gb:.2f} | Peak Mem: {max_mem_gb:.2f}")
-
-        get_accelerator().empty_cache()
-
-    avg_tokens_per_sec = total_tokens / total_steps_time
-    total_time = time.time() - start_time
-
-    print(f"Training done in {total_time:.2f} seconds.")
-    print(f"Avg Tokens/s: {avg_tokens_per_sec:.2f}")
-    print(f"Peak GPU Mem (GB): {torch.cuda.max_memory_allocated() / 1024**3 :.2f}")
+    if rank == 0:
+        avg_tokens_per_sec = total_tokens / total_steps_time
+        total_time = time.time() - start_time
+        print(f"\nTraining done in {total_time:.2f} seconds.")
+        print(f"Avg Global Tokens/s: {avg_tokens_per_sec:.2f}")
+        print(f"Peak GPU Mem (GB): {torch.cuda.max_memory_allocated() / 1024**3 :.2f}")
 
 if __name__ == "__main__":
     main()

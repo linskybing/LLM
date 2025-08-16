@@ -20,19 +20,6 @@
     "loss_scale_window": 1000,
     "initial_scale_power": 12
   },
-  "zero_optimization": {
-    "stage": 3,
-    "allgather_partitions": true,
-    "allgather_bucket_size": 5e8,
-    "overlap_comm": true,
-    "reduce_scatter": true,
-    "reduce_bucket_size": 5e8,
-    "contiguous_gradients": true,
-    "sub_group_size": 1e12,
-    "ignore_unused_parameters": true,
-    "round_robin_gradients": true,
-    "log_trace_cache_warnings": false
-  },
   "gradient_checkpointing": {
     "enable": true
   }
