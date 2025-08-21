@@ -2,14 +2,15 @@ import argparse
 import deepspeed
 import torch
 import torch.distributed as dist
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 import random
 import time
 import nltk
-
+import bitsandbytes as bnb
 # NLTK words
 nltk.download('words')
 from nltk.corpus import words
+import os
 word_list = words.words()
 
 # -----------------------------
@@ -66,28 +67,53 @@ def main():
         tokenizer.pad_token = tokenizer.eos_token
 
     # -----------------------------
+    # Distributed init
+    # -----------------------------
+    local_rank = int(os.environ.get("OMPI_COMM_WORLD_LOCAL_RANK", 0))
+    rank = int(os.environ.get("OMPI_COMM_WORLD_RANK", 0))
+    world_size = int(os.environ.get("OMPI_COMM_WORLD_SIZE", 1))
+    os.environ['MASTER_ADDR'] = os.environ.get('MASTER_ADDR', '127.0.0.1')
+    os.environ['MASTER_PORT'] = os.environ.get('MASTER_PORT', '29500')
+
+    dist.init_process_group(
+        backend='nccl',
+        init_method='env://',
+        rank=rank,
+        world_size=world_size
+    )
+    device = torch.device(f"cuda:{local_rank}")
+
+    # -----------------------------
     # Model
     # -----------------------------
+    bnb_config = BitsAndBytesConfig(
+        load_in_4bit=True,
+        bnb_4bit_compute_dtype="float16",
+        bnb_4bit_use_double_quant=True,
+        bnb_4bit_quant_type="nf4"
+    )
     model = AutoModelForCausalLM.from_pretrained(
         args.model_name,
-        torch_dtype=torch.bfloat16,
-        use_cache=False
+        quantization_config=bnb_config,
+        device_map={"": device}
     )
-    model_parameters = filter(lambda p: p.requires_grad, model.parameters())
+    model.to(device)
+    optimizer = bnb.optim.Adam8bit(
+        model.parameters(),
+        lr=2e-5, betas=(0.9, 0.999), eps=1e-8, weight_decay=0.0
+    )
     # -----------------------------
     # DeepSpeed initialize
     # -----------------------------
     ds_engine, optimizer, _, _ = deepspeed.initialize(
         model=model,
-        model_parameters=model_parameters,
+        model_parameters=model.parameters(),
+        optimizer=optimizer,
         config=args.deepspeed_config,
-        dist_init_required=True
+        dist_init_required=False
     )
 
     model.train()
-    
-    rank = dist.get_rank() if dist.is_initialized() else 0
-    world_size = dist.get_world_size() if dist.is_initialized() else 1
 
     # -----------------------------
     # Training loop
@@ -129,6 +155,9 @@ def main():
         print(f"\nTraining done in {total_time:.2f} seconds.")
         print(f"Avg Global Tokens/s: {avg_tokens_per_sec:.2f}")
         print(f"Peak GPU Mem (GB): {torch.cuda.max_memory_allocated() / 1024**3 :.2f}")
+    
+    if dist.is_initialized():
+        dist.destroy_process_group()
 
 if __name__ == "__main__":
     main()
