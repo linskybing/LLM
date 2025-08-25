@@ -1,9 +1,9 @@
 {
-  "train_batch_size": 8,
+  "train_batch_size": 2,
   "train_micro_batch_size_per_gpu": 1,
   "steps_per_print": 1,
   "optimizer": {
-    "type": "Adam",
+    "type": "AdamW",
     "params": {
       "lr": 1e-5
     }
@@ -15,8 +15,8 @@
       "stage": 2,
       "overlap_comm": true,
       "contiguous_gradients": true,
-      "reduce_bucket_size": 5e9,
-      "prefetch_bucket_size": 5e9
+      "reduce_bucket_size": 5e6,
+      "prefetch_bucket_size": 5e6
   },
   "gradient_checkpointing": {
     "enable": true

@@ -1,7 +1,7 @@
 #! /bin/bash
 
 module purge
-module load rocm
+module load rocm ucx ucc openmpi
 
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate deepspeed
@@ -18,9 +18,9 @@ export RUN=$ROOT/run
 
 export PYTORCH_CUDA_ALLOC_CONF="max_split_size_mb:128,garbage_collection_threshold:0.7,expandable_segments:True"
 
-deepspeed $RUN/quantize.py \
-    --deepspeed_config $CONFIG/RQ.json \
+mpirun -np 2 bash -c 'python $RUN/native.py \
+    --deepspeed_config $CONFIG/zero_2_offload.json \
     --batch_size 1 \
     --seq_len 350 \
-    --total_steps 100 \
-    > "$LOGS/RQ_amd.log" 2>&1
+    --total_steps 100' \
+    > "$LOGS/zero_2_offload_amd.log" 2>&1

@@ -2,15 +2,15 @@ import argparse
 import deepspeed
 import torch
 import torch.distributed as dist
-from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
+from transformers import AutoTokenizer, AutoModelForCausalLM
 import random
 import time
 import nltk
-import bitsandbytes as bnb
+import os
+
 # NLTK words
 nltk.download('words')
 from nltk.corpus import words
-import os
 word_list = words.words()
 
 # -----------------------------
@@ -84,32 +84,22 @@ def main():
     device = torch.device(f"cuda:{local_rank}")
 
     # -----------------------------
-    # Model
+    # Model (no quantization)
     # -----------------------------
-    bnb_config = BitsAndBytesConfig(
-        load_in_4bit=True,
-        bnb_4bit_compute_dtype="float16",
-        bnb_4bit_use_double_quant=True,
-        bnb_4bit_quant_type="nf4"
-    )
     model = AutoModelForCausalLM.from_pretrained(
         args.model_name,
-        quantization_config=bnb_config,
         device_map={"": device},
-        attn_implementation="flash_attention_2"
+        attn_implementation="flash_attention_2",
+        torch_dtype=torch.float16
     )
     model.to(device)
-    optimizer = bnb.optim.Adam8bit(
-        model.parameters(),
-        lr=2e-5, betas=(0.9, 0.999), eps=1e-8, weight_decay=0.0
-    )
+
     # -----------------------------
     # DeepSpeed initialize
     # -----------------------------
     ds_engine, optimizer, _, _ = deepspeed.initialize(
         model=model,
         model_parameters=model.parameters(),
-        optimizer=optimizer,
         config=args.deepspeed_config,
         dist_init_required=False
     )
