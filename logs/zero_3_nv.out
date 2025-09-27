@@ -4,7 +4,7 @@ based on cuda_12.8.0_570.86.10_linux.run
 --------------------------------
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-Thu Aug 21 17:55:21 2025       
+Mon Aug 25 14:55:50 2025       
 +---------------------------------------------------------------------------------------+
 | NVIDIA-SMI 535.161.08             Driver Version: 535.161.08   CUDA Version: 12.8     |
 |-----------------------------------------+----------------------+----------------------+
@@ -13,35 +13,35 @@ Thu Aug 21 17:55:21 2025
 |                                         |                      |               MIG M. |
 |=========================================+======================+======================|
 |   0  Tesla V100-SXM2-32GB           On  | 00000000:1B:00.0 Off |                    0 |
-| N/A   28C    P0              42W / 300W |      0MiB / 32768MiB |      0%      Default |
+| N/A   28C    P0              40W / 300W |      0MiB / 32768MiB |      0%      Default |
 |                                         |                      |                  N/A |
 +-----------------------------------------+----------------------+----------------------+
 |   1  Tesla V100-SXM2-32GB           On  | 00000000:1C:00.0 Off |                    0 |
-| N/A   26C    P0              41W / 300W |      0MiB / 32768MiB |      0%      Default |
+| N/A   27C    P0              40W / 300W |      0MiB / 32768MiB |      0%      Default |
 |                                         |                      |                  N/A |
 +-----------------------------------------+----------------------+----------------------+
 |   2  Tesla V100-SXM2-32GB           On  | 00000000:3D:00.0 Off |                    0 |
-| N/A   26C    P0              41W / 300W |      0MiB / 32768MiB |      0%      Default |
+| N/A   27C    P0              42W / 300W |      0MiB / 32768MiB |      0%      Default |
 |                                         |                      |                  N/A |
 +-----------------------------------------+----------------------+----------------------+
 |   3  Tesla V100-SXM2-32GB           On  | 00000000:3E:00.0 Off |                    0 |
-| N/A   28C    P0              41W / 300W |      0MiB / 32768MiB |      0%      Default |
+| N/A   28C    P0              42W / 300W |      0MiB / 32768MiB |      0%      Default |
 |                                         |                      |                  N/A |
 +-----------------------------------------+----------------------+----------------------+
 |   4  Tesla V100-SXM2-32GB           On  | 00000000:B1:00.0 Off |                    0 |
-| N/A   28C    P0              41W / 300W |      0MiB / 32768MiB |      0%      Default |
+| N/A   28C    P0              42W / 300W |      0MiB / 32768MiB |      0%      Default |
 |                                         |                      |                  N/A |
 +-----------------------------------------+----------------------+----------------------+
 |   5  Tesla V100-SXM2-32GB           On  | 00000000:B2:00.0 Off |                    0 |
-| N/A   30C    P0              42W / 300W |      0MiB / 32768MiB |      0%      Default |
+| N/A   28C    P0              43W / 300W |      0MiB / 32768MiB |      0%      Default |
 |                                         |                      |                  N/A |
 +-----------------------------------------+----------------------+----------------------+
 |   6  Tesla V100-SXM2-32GB           On  | 00000000:DB:00.0 Off |                    0 |
-| N/A   28C    P0              41W / 300W |      0MiB / 32768MiB |      0%      Default |
+| N/A   29C    P0              41W / 300W |      0MiB / 32768MiB |      0%      Default |
 |                                         |                      |                  N/A |
 +-----------------------------------------+----------------------+----------------------+
 |   7  Tesla V100-SXM2-32GB           On  | 00000000:DC:00.0 Off |                    0 |
-| N/A   27C    P0              42W / 300W |      0MiB / 32768MiB |      0%      Default |
+| N/A   26C    P0              42W / 300W |      0MiB / 32768MiB |      0%      Default |
 |                                         |                      |                  N/A |
 +-----------------------------------------+----------------------+----------------------+
                                                                                          
@@ -53,42 +53,40 @@ Thu Aug 21 17:55:21 2025
 |  No running processes found                                                           |
 +---------------------------------------------------------------------------------------+
 True 8
-[2025-08-21 17:55:38,946] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-21 17:56:02,719] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
-[2025-08-21 17:56:05,972] [WARNING] [runner.py:220:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
+[2025-08-25 14:55:54,680] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-25 14:55:57,910] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-25 14:55:58,918] [WARNING] [runner.py:220:fetch_hostfile] Unable to find hostfile, will proceed with training with local resources only.
 Detected VISIBLE_DEVICES=0,1,2,3,4,5,6,7: setting --include=localhost:0,1,2,3,4,5,6,7
-[2025-08-21 17:56:05,972] [INFO] [runner.py:610:main] cmd = /home/u8644434/miniconda3/envs/deepspeed/bin/python3.12 -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMSwgMiwgMywgNCwgNSwgNiwgN119 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None /work/u8644434/LLM/run/quantize.py --deepspeed_config /work/u8644434/LLM/configs/zero_3.json --batch_size 1 --seq_len 350 --total_steps 100
-[2025-08-21 17:56:07,616] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-21 17:56:10,959] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
-[2025-08-21 17:56:11,974] [INFO] [launch.py:146:main] WORLD INFO DICT: {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]}
-[2025-08-21 17:56:11,974] [INFO] [launch.py:152:main] nnodes=1, num_local_procs=8, node_rank=0
-[2025-08-21 17:56:11,974] [INFO] [launch.py:163:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]})
-[2025-08-21 17:56:11,974] [INFO] [launch.py:164:main] dist_world_size=8
-[2025-08-21 17:56:11,974] [INFO] [launch.py:168:main] Setting CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
-[2025-08-21 17:56:11,975] [INFO] [launch.py:256:main] process 841253 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/quantize.py', '--local_rank=0', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-21 17:56:11,976] [INFO] [launch.py:256:main] process 841254 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/quantize.py', '--local_rank=1', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-21 17:56:11,977] [INFO] [launch.py:256:main] process 841255 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/quantize.py', '--local_rank=2', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-21 17:56:11,978] [INFO] [launch.py:256:main] process 841256 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/quantize.py', '--local_rank=3', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-21 17:56:11,978] [INFO] [launch.py:256:main] process 841257 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/quantize.py', '--local_rank=4', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-21 17:56:11,979] [INFO] [launch.py:256:main] process 841258 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/quantize.py', '--local_rank=5', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-21 17:56:11,981] [INFO] [launch.py:256:main] process 841259 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/quantize.py', '--local_rank=6', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-21 17:56:11,983] [INFO] [launch.py:256:main] process 841260 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/quantize.py', '--local_rank=7', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
-[2025-08-21 17:56:14,344] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-21 17:56:14,528] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-21 17:56:14,556] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-21 17:56:14,624] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-21 17:56:14,630] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-21 17:56:14,632] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-21 17:56:14,722] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-21 17:56:14,757] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-[2025-08-21 17:56:18,277] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
-[2025-08-21 17:56:18,755] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
-[2025-08-21 17:56:18,864] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
-[2025-08-21 17:56:19,020] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
-[2025-08-21 17:56:19,024] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
-[2025-08-21 17:56:19,090] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
-[2025-08-21 17:56:19,424] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
-[2025-08-21 17:56:19,650] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-25 14:55:58,918] [INFO] [runner.py:610:main] cmd = /home/u8644434/miniconda3/envs/deepspeed/bin/python3.12 -u -m deepspeed.launcher.launch --world_info=eyJsb2NhbGhvc3QiOiBbMCwgMSwgMiwgMywgNCwgNSwgNiwgN119 --master_addr=127.0.0.1 --master_port=29500 --enable_each_rank_log=None /work/u8644434/LLM/run/native.py --deepspeed_config /work/u8644434/LLM/configs/zero_3.json --batch_size 1 --seq_len 350 --total_steps 100
+[2025-08-25 14:56:00,661] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-25 14:56:03,953] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-25 14:56:04,976] [INFO] [launch.py:146:main] WORLD INFO DICT: {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]}
+[2025-08-25 14:56:04,976] [INFO] [launch.py:152:main] nnodes=1, num_local_procs=8, node_rank=0
+[2025-08-25 14:56:04,976] [INFO] [launch.py:163:main] global_rank_mapping=defaultdict(<class 'list'>, {'localhost': [0, 1, 2, 3, 4, 5, 6, 7]})
+[2025-08-25 14:56:04,976] [INFO] [launch.py:164:main] dist_world_size=8
+[2025-08-25 14:56:04,976] [INFO] [launch.py:168:main] Setting CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7
+[2025-08-25 14:56:04,977] [INFO] [launch.py:256:main] process 316254 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/native.py', '--local_rank=0', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-25 14:56:04,977] [INFO] [launch.py:256:main] process 316255 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/native.py', '--local_rank=1', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-25 14:56:04,978] [INFO] [launch.py:256:main] process 316256 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/native.py', '--local_rank=2', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-25 14:56:04,979] [INFO] [launch.py:256:main] process 316257 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/native.py', '--local_rank=3', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-25 14:56:04,979] [INFO] [launch.py:256:main] process 316258 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/native.py', '--local_rank=4', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-25 14:56:04,980] [INFO] [launch.py:256:main] process 316259 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/native.py', '--local_rank=5', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-25 14:56:04,982] [INFO] [launch.py:256:main] process 316260 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/native.py', '--local_rank=6', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-25 14:56:04,983] [INFO] [launch.py:256:main] process 316261 spawned with command: ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/native.py', '--local_rank=7', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100']
+[2025-08-25 14:56:07,243] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-25 14:56:07,294] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-25 14:56:07,311] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-25 14:56:07,417] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-25 14:56:07,505] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-25 14:56:07,544] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-25 14:56:08,291] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-25 14:56:08,347] [INFO] [real_accelerator.py:254:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-08-25 14:56:11,190] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-25 14:56:11,437] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-25 14:56:11,671] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-25 14:56:11,729] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-25 14:56:11,749] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+[2025-08-25 14:56:11,882] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
 [nltk_data] Downloading package words to /home/u8644434/nltk_data...
 [nltk_data]   Package words is already up-to-date!
 [nltk_data] Downloading package words to /home/u8644434/nltk_data...
@@ -98,200 +96,147 @@ Detected VISIBLE_DEVICES=0,1,2,3,4,5,6,7: setting --include=localhost:0,1,2,3,4,
 [nltk_data] Downloading package words to /home/u8644434/nltk_data...
 [nltk_data]   Package words is already up-to-date!
 [nltk_data] Downloading package words to /home/u8644434/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+Traceback (most recent call last):
+  File "/work/u8644434/LLM/run/native.py", line 153, in <module>
+    main()
+  File "/work/u8644434/LLM/run/native.py", line 78, in main
+    dist.init_process_group(
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 95, in wrapper
+    func_return = func(*args, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 1757, in init_process_group
+    store, rank, world_size = next(rendezvous_iterator)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/rendezvous.py", line 278, in _env_rendezvous_handler
+    store = _create_c10d_store(
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/rendezvous.py", line 198, in _create_c10d_store
+    return TCPStore(
+           ^^^^^^^^^
+torch.distributed.DistNetworkError: The server socket has failed to listen on any local network address. port: 29500, useIpv6: false, code: -98, name: EADDRINUSE, message: address already in use
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/work/u8644434/LLM/run/native.py", line 153, in <module>
+    main()
+  File "/work/u8644434/LLM/run/native.py", line 78, in main
+    dist.init_process_group(
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 95, in wrapper
+    func_return = func(*args, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 1757, in init_process_group
+    store, rank, world_size = next(rendezvous_iterator)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/rendezvous.py", line 278, in _env_rendezvous_handler
+    store = _create_c10d_store(
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/rendezvous.py", line 198, in _create_c10d_store
+    return TCPStore(
+           ^^^^^^^^^
+torch.distributed.DistNetworkError: The server socket has failed to listen on any local network address. port: 29500, useIpv6: false, code: -98, name: EADDRINUSE, message: address already in use
+Traceback (most recent call last):
+  File "/work/u8644434/LLM/run/native.py", line 153, in <module>
+    main()
+  File "/work/u8644434/LLM/run/native.py", line 78, in main
+    dist.init_process_group(
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 95, in wrapper
+    func_return = func(*args, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 1757, in init_process_group
+    store, rank, world_size = next(rendezvous_iterator)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/rendezvous.py", line 278, in _env_rendezvous_handler
+    store = _create_c10d_store(
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/rendezvous.py", line 198, in _create_c10d_store
+    return TCPStore(
+           ^^^^^^^^^
+torch.distributed.DistNetworkError: The server socket has failed to listen on any local network address. port: 29500, useIpv6: false, code: -98, name: EADDRINUSE, message: address already in use
 [nltk_data] Downloading package words to /home/u8644434/nltk_data...
 [nltk_data]   Package words is already up-to-date!
-[nltk_data]   Package words is already up-to-date!
+[2025-08-25 14:56:15,839] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+Traceback (most recent call last):
+  File "/work/u8644434/LLM/run/native.py", line 153, in <module>
+    main()
+  File "/work/u8644434/LLM/run/native.py", line 78, in main
+    dist.init_process_group(
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 95, in wrapper
+    func_return = func(*args, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 1757, in init_process_group
+    store, rank, world_size = next(rendezvous_iterator)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/rendezvous.py", line 278, in _env_rendezvous_handler
+    store = _create_c10d_store(
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/rendezvous.py", line 198, in _create_c10d_store
+    return TCPStore(
+           ^^^^^^^^^
+torch.distributed.DistNetworkError: The server socket has failed to listen on any local network address. port: 29500, useIpv6: false, code: -98, name: EADDRINUSE, message: address already in use
+[2025-08-25 14:56:15,881] [INFO] [logging.py:107:log_dist] [Rank -1] [TorchCheckpointEngine] Initialized with serialization = False
+Traceback (most recent call last):
+  File "/work/u8644434/LLM/run/native.py", line 153, in <module>
+    main()
+  File "/work/u8644434/LLM/run/native.py", line 78, in main
+    dist.init_process_group(
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 95, in wrapper
+    func_return = func(*args, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 1757, in init_process_group
+    store, rank, world_size = next(rendezvous_iterator)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/rendezvous.py", line 278, in _env_rendezvous_handler
+    store = _create_c10d_store(
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/rendezvous.py", line 198, in _create_c10d_store
+    return TCPStore(
+           ^^^^^^^^^
+torch.distributed.DistNetworkError: The server socket has failed to listen on any local network address. port: 29500, useIpv6: false, code: -98, name: EADDRINUSE, message: address already in use
 [nltk_data] Downloading package words to /home/u8644434/nltk_data...
 [nltk_data]   Package words is already up-to-date!
 [nltk_data] Downloading package words to /home/u8644434/nltk_data...
 [nltk_data]   Package words is already up-to-date!
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.46s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.23s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.22s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.46s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.46s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.46s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.21s/it]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.24s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  2.77s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  2.77s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.67s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  2.77s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  2.77s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.67s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.68s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.68s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  3.02s/it]
-Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  3.02s/it]
-Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.91s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  3.02s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:06<00:00,  3.02s/it]
-Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.90s/it]
-
-Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.92s/it]
-Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.91s/it]
-
-[2025-08-21 17:56:33,120] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
-[2025-08-21 17:56:33,120] [INFO] [comm.py:821:init_distributed] cdb=None
-[2025-08-21 17:56:33,123] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
-[2025-08-21 17:56:33,124] [INFO] [comm.py:821:init_distributed] cdb=None
-[2025-08-21 17:56:33,128] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
-[2025-08-21 17:56:33,128] [INFO] [comm.py:821:init_distributed] cdb=None
-[2025-08-21 17:56:33,130] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
-[2025-08-21 17:56:33,130] [INFO] [comm.py:821:init_distributed] cdb=None
-[2025-08-21 17:56:33,132] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
-[2025-08-21 17:56:33,133] [INFO] [comm.py:821:init_distributed] cdb=None
-[2025-08-21 17:56:33,133] [INFO] [comm.py:852:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
-[2025-08-21 17:56:33,135] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
-[2025-08-21 17:56:33,135] [INFO] [comm.py:821:init_distributed] cdb=None
-[2025-08-21 17:56:33,149] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
-[2025-08-21 17:56:33,150] [INFO] [comm.py:821:init_distributed] cdb=None
-[2025-08-21 17:56:33,474] [INFO] [logging.py:107:log_dist] [Rank -1] DeepSpeed info: version=0.17.4, git-hash=unknown, git-branch=unknown
-[2025-08-21 17:56:33,474] [INFO] [comm.py:821:init_distributed] cdb=None
-[2025-08-21 17:56:34,529] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
-[2025-08-21 17:56:34,529] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
-[2025-08-21 17:56:34,529] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
-[2025-08-21 17:56:34,529] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
-[2025-08-21 17:56:34,529] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
-[2025-08-21 17:56:34,530] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
-[2025-08-21 17:56:34,532] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
-[2025-08-21 17:56:34,540] [INFO] [config.py:684:__init__] Config mesh_device None world_size = 8
-[2025-08-21 17:57:23,612] [INFO] [engine.py:1339:_configure_distributed_model] ********** distributed groups summary **********
-	 self.dp_world_size=8
-	 self.mp_world_size=1
-	 self.seq_dp_world_size=8
-	 self.sequence_parallel_size=1
-***********************************************
-[2025-08-21 17:57:25,308] [INFO] [logging.py:107:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
-[2025-08-21 17:57:25,309] [INFO] [logging.py:107:log_dist] [Rank 0] Using client Optimizer as basic optimizer
-[2025-08-21 17:57:25,309] [INFO] [logging.py:107:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
-[2025-08-21 17:57:25,319] [INFO] [logging.py:107:log_dist] [Rank 0] DeepSpeed Basic Optimizer = Adam8bit
-[2025-08-21 17:57:25,319] [INFO] [utils.py:59:is_zero_supported_optimizer] Checking ZeRO support for optimizer=Adam8bit type=<class 'bitsandbytes.optim.adam.Adam8bit'>
-[rank3]: Traceback (most recent call last):
-[rank3]:   File "/work/u8644434/LLM/run/quantize.py", line 139, in <module>
-[rank3]:     main()
-[rank3]:   File "/work/u8644434/LLM/run/quantize.py", line 84, in main
-[rank3]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank3]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank3]:     engine = DeepSpeedEngine(args=args,
-[rank3]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 335, in __init__
-[rank3]:     self._configure_optimizer(optimizer, model_parameters)
-[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1440, in _configure_optimizer
-[rank3]:     optimizer_wrapper = self._do_optimizer_sanity_check(basic_optimizer)
-[rank3]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank3]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1369, in _do_optimizer_sanity_check
-[rank3]:     self.zero_allow_untested_optimizer()
-[rank3]: AssertionError: You are using an untested ZeRO Optimizer. Please add <"zero_allow_untested_optimizer": true> in the configuration file to use it.
-[rank6]: Traceback (most recent call last):
-[rank6]:   File "/work/u8644434/LLM/run/quantize.py", line 139, in <module>
-[rank6]:     main()
-[rank6]:   File "/work/u8644434/LLM/run/quantize.py", line 84, in main
-[rank6]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank6]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank6]:     engine = DeepSpeedEngine(args=args,
-[rank6]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 335, in __init__
-[rank6]:     self._configure_optimizer(optimizer, model_parameters)
-[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1440, in _configure_optimizer
-[rank6]:     optimizer_wrapper = self._do_optimizer_sanity_check(basic_optimizer)
-[rank6]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank6]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1369, in _do_optimizer_sanity_check
-[rank6]:     self.zero_allow_untested_optimizer()
-[rank6]: AssertionError: You are using an untested ZeRO Optimizer. Please add <"zero_allow_untested_optimizer": true> in the configuration file to use it.
-[rank2]: Traceback (most recent call last):
-[rank2]:   File "/work/u8644434/LLM/run/quantize.py", line 139, in <module>
-[rank2]:     main()
-[rank2]:   File "/work/u8644434/LLM/run/quantize.py", line 84, in main
-[rank2]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank2]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank2]:     engine = DeepSpeedEngine(args=args,
-[rank2]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 335, in __init__
-[rank2]:     self._configure_optimizer(optimizer, model_parameters)
-[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1440, in _configure_optimizer
-[rank2]:     optimizer_wrapper = self._do_optimizer_sanity_check(basic_optimizer)
-[rank2]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank2]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1369, in _do_optimizer_sanity_check
-[rank2]:     self.zero_allow_untested_optimizer()
-[rank2]: AssertionError: You are using an untested ZeRO Optimizer. Please add <"zero_allow_untested_optimizer": true> in the configuration file to use it.
-[rank4]: Traceback (most recent call last):
-[rank4]:   File "/work/u8644434/LLM/run/quantize.py", line 139, in <module>
-[rank4]:     main()
-[rank4]:   File "/work/u8644434/LLM/run/quantize.py", line 84, in main
-[rank4]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank4]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank4]:     engine = DeepSpeedEngine(args=args,
-[rank4]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 335, in __init__
-[rank4]:     self._configure_optimizer(optimizer, model_parameters)
-[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1440, in _configure_optimizer
-[rank4]:     optimizer_wrapper = self._do_optimizer_sanity_check(basic_optimizer)
-[rank4]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank4]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1369, in _do_optimizer_sanity_check
-[rank4]:     self.zero_allow_untested_optimizer()
-[rank4]: AssertionError: You are using an untested ZeRO Optimizer. Please add <"zero_allow_untested_optimizer": true> in the configuration file to use it.
-[rank1]: Traceback (most recent call last):
-[rank1]:   File "/work/u8644434/LLM/run/quantize.py", line 139, in <module>
-[rank1]:     main()
-[rank1]:   File "/work/u8644434/LLM/run/quantize.py", line 84, in main
-[rank1]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank1]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank1]:     engine = DeepSpeedEngine(args=args,
-[rank1]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 335, in __init__
-[rank1]:     self._configure_optimizer(optimizer, model_parameters)
-[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1440, in _configure_optimizer
-[rank1]:     optimizer_wrapper = self._do_optimizer_sanity_check(basic_optimizer)
-[rank1]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank1]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1369, in _do_optimizer_sanity_check
-[rank1]:     self.zero_allow_untested_optimizer()
-[rank1]: AssertionError: You are using an untested ZeRO Optimizer. Please add <"zero_allow_untested_optimizer": true> in the configuration file to use it.
-[rank7]: Traceback (most recent call last):
-[rank7]:   File "/work/u8644434/LLM/run/quantize.py", line 139, in <module>
-[rank7]:     main()
-[rank7]:   File "/work/u8644434/LLM/run/quantize.py", line 84, in main
-[rank7]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank7]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank7]:     engine = DeepSpeedEngine(args=args,
-[rank7]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 335, in __init__
-[rank7]:     self._configure_optimizer(optimizer, model_parameters)
-[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1440, in _configure_optimizer
-[rank7]:     optimizer_wrapper = self._do_optimizer_sanity_check(basic_optimizer)
-[rank7]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank7]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1369, in _do_optimizer_sanity_check
-[rank7]:     self.zero_allow_untested_optimizer()
-[rank7]: AssertionError: You are using an untested ZeRO Optimizer. Please add <"zero_allow_untested_optimizer": true> in the configuration file to use it.
-[rank5]: Traceback (most recent call last):
-[rank5]:   File "/work/u8644434/LLM/run/quantize.py", line 139, in <module>
-[rank5]:     main()
-[rank5]:   File "/work/u8644434/LLM/run/quantize.py", line 84, in main
-[rank5]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank5]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank5]:     engine = DeepSpeedEngine(args=args,
-[rank5]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 335, in __init__
-[rank5]:     self._configure_optimizer(optimizer, model_parameters)
-[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1440, in _configure_optimizer
-[rank5]:     optimizer_wrapper = self._do_optimizer_sanity_check(basic_optimizer)
-[rank5]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank5]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1369, in _do_optimizer_sanity_check
-[rank5]:     self.zero_allow_untested_optimizer()
-[rank5]: AssertionError: You are using an untested ZeRO Optimizer. Please add <"zero_allow_untested_optimizer": true> in the configuration file to use it.
-[rank0]: Traceback (most recent call last):
-[rank0]:   File "/work/u8644434/LLM/run/quantize.py", line 139, in <module>
-[rank0]:     main()
-[rank0]:   File "/work/u8644434/LLM/run/quantize.py", line 84, in main
-[rank0]:     ds_engine, optimizer, _, _ = deepspeed.initialize(
-[rank0]:                                  ^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/__init__.py", line 193, in initialize
-[rank0]:     engine = DeepSpeedEngine(args=args,
-[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 335, in __init__
-[rank0]:     self._configure_optimizer(optimizer, model_parameters)
-[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1440, in _configure_optimizer
-[rank0]:     optimizer_wrapper = self._do_optimizer_sanity_check(basic_optimizer)
-[rank0]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-[rank0]:   File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/deepspeed/runtime/engine.py", line 1369, in _do_optimizer_sanity_check
-[rank0]:     self.zero_allow_untested_optimizer()
-[rank0]: AssertionError: You are using an untested ZeRO Optimizer. Please add <"zero_allow_untested_optimizer": true> in the configuration file to use it.
-[rank0]:[W821 17:57:26.744303595 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
-[2025-08-21 17:57:28,991] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 841253
-[2025-08-21 17:57:29,457] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 841254
-[2025-08-21 17:57:29,472] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 841255
-[2025-08-21 17:57:29,483] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 841256
-[2025-08-21 17:57:29,493] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 841257
-[2025-08-21 17:57:29,503] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 841258
-[2025-08-21 17:57:29,513] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 841259
-[2025-08-21 17:57:29,513] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 841260
-[2025-08-21 17:57:29,523] [ERROR] [launch.py:325:sigkill_handler] ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/quantize.py', '--local_rank=7', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100'] exits with return code = 1
+[2025-08-25 14:56:19,990] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 316254
+[2025-08-25 14:56:20,007] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 316255
+[2025-08-25 14:56:20,019] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 316256
+Traceback (most recent call last):
+  File "/work/u8644434/LLM/run/native.py", line 153, in <module>
+    main()
+  File "/work/u8644434/LLM/run/native.py", line 78, in main
+    dist.init_process_group(
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 95, in wrapper
+    func_return = func(*args, **kwargs)
+                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 1757, in init_process_group
+    store, rank, world_size = next(rendezvous_iterator)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/rendezvous.py", line 278, in _env_rendezvous_handler
+    store = _create_c10d_store(
+            ^^^^^^^^^^^^^^^^^^^
+  File "/home/u8644434/miniconda3/envs/deepspeed/lib/python3.12/site-packages/torch/distributed/rendezvous.py", line 198, in _create_c10d_store
+    return TCPStore(
+           ^^^^^^^^^
+torch.distributed.DistNetworkError: The server socket has failed to listen on any local network address. port: 29500, useIpv6: false, code: -98, name: EADDRINUSE, message: address already in use
+[2025-08-25 14:56:20,376] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 316257
+[2025-08-25 14:56:20,376] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 316258
+[2025-08-25 14:56:20,392] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 316259
+[2025-08-25 14:56:20,403] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 316260
+[2025-08-25 14:56:20,466] [INFO] [launch.py:319:sigkill_handler] Killing subprocess 316261
+[2025-08-25 14:56:20,535] [ERROR] [launch.py:325:sigkill_handler] ['/home/u8644434/miniconda3/envs/deepspeed/bin/python3.12', '-u', '/work/u8644434/LLM/run/native.py', '--local_rank=7', '--deepspeed_config', '/work/u8644434/LLM/configs/zero_3.json', '--batch_size', '1', '--seq_len', '350', '--total_steps', '100'] exits with return code = 1

@@ -42,15 +42,4 @@
         "pin_memory": true
     }
   },
-  "activation_checkpointing": {
-    "partition_activations": true,
-    "contiguous_memory_optimization": true,
-    "cpu_checkpointing": false,
-    "number_checkpoints": null,
-    "synchronize_checkpoint_boundary": true,
-    "profile": false
-  },
-  "gradient_checkpointing": {
-    "enable": true
-  }
 }

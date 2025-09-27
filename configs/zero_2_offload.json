@@ -20,18 +20,15 @@
       "stage": 2,
       "overlap_comm": true,
       "contiguous_gradients": true,
-      "reduce_bucket_size": 5e9,
-      "prefetch_bucket_size": 5e9,
-      "offload_param": {
-          "device": "cpu", 
-          "pin_memory": true
-      },
+      "reduce_bucket_size": 2e8,
+      "prefetch_bucket_size": 2e8,
       "offload_optimizer": {
           "device": "cpu",
           "pin_memory": true
+      },
+      "offload_optimizer": {
+        "device": "cpu",
+        "pin_memory": true
       }
-  },
-  "gradient_checkpointing": {
-    "enable": true
   }
 }

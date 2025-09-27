@@ -88,11 +88,10 @@ def main():
     # -----------------------------
     model = AutoModelForCausalLM.from_pretrained(
         args.model_name,
-        device_map={"": device},
-        attn_implementation="flash_attention_2",
+        device_map=None,
         torch_dtype=torch.float16
     )
-    model.to(device)
+    #model.to(device)
 
     # -----------------------------
     # DeepSpeed initialize

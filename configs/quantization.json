@@ -1,16 +1,10 @@
 {
-  "train_batch_size": 2,
+  "train_batch_size": 8,
   "train_micro_batch_size_per_gpu": 1,
   "steps_per_print": 1,
   "gradient_clipping": 1.0,
   "bf16": {
     "enabled": true
-  },
-  "zero_optimization": {
-    "stage": 0,
-    "contiguous_gradients": true,
-    "reduce_bucket_size": 5e5,
-    "allgather_bucket_size": 5e5
   },
   "quantize_training": {
     "enabled": true,
