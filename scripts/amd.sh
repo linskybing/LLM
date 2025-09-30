@@ -19,8 +19,8 @@ export RUN=$ROOT/run
 export PYTORCH_CUDA_ALLOC_CONF="max_split_size_mb:128,garbage_collection_threshold:0.7,expandable_segments:True"
 
 mpirun -np 2 bash -c 'python $RUN/native.py \
-    --deepspeed_config $CONFIG/zero_2_offload.json \
+    --deepspeed_config $CONFIG/zero_3.json \
     --batch_size 1 \
     --seq_len 350 \
     --total_steps 100' \
-    > "$LOGS/zero_2_offload_amd.log" 2>&1
+    > "$LOGS/zero_3R_amd.log" 2>&1

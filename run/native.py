@@ -90,8 +90,10 @@ def main():
         args.model_name,
         device_map={"": device},
         attn_implementation="flash_attention_2",
-        torch_dtype=torch.float16
+        torch_dtype=torch.float16,
+        use_cache = False
     )
+    model.gradient_checkpointing_enable()
     model.to(device)
 
     # -----------------------------

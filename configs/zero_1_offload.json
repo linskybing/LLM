@@ -26,8 +26,5 @@
           "device": "cpu",
           "pin_memory": true
       }
-  },
-  "gradient_checkpointing": {
-    "enable": true
   }
 }

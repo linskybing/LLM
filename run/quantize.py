@@ -96,8 +96,9 @@ def main():
         args.model_name,
         quantization_config=bnb_config,
         device_map={"": device},
-        attn_implementation="flash_attention_2"
+        use_cache = False
     )
+    model.gradient_checkpointing_enable()
     model.to(device)
     optimizer = bnb.optim.Adam8bit(
         model.parameters(),
