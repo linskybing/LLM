@@ -605,3 +605,4 @@ True 8
 Training done in 42.00 seconds.
 Avg Global Tokens/s: 6761.64
 Peak GPU Mem (GB): 7.92
+slurmstepd: error: *** JOB 761567 ON gn1206 CANCELLED AT 2025-08-21T20:11:13 ***
