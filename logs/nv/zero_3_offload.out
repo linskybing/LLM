@@ -476,3 +476,9 @@ Parameter Offload - Persistent parameters statistics: param_count = 65, numel = 
 [2025-10-22 20:01:41,025] [INFO] [logging.py:107:log_dist] [Rank 0] step=50, skipped=0, lr=[1e-05], mom=[[0.8, 0.999]]
 [2025-10-22 20:01:41,025] [INFO] [timer.py:264:stop] epoch=0/micro_step=50/global_step=50, RunningAvgSamplesPerSec=0.7262461558728897, CurrSamplesPerSec=0.7269867186722528, MemAllocated=1.14GB, MaxMemAllocated=16.37GB
 [Step 50/100] Loss: 4.7903 | Global Tokens/s: 254.36 | GPU Mem (GB): 0.95 | Peak Mem: 16.37
+[2025-10-22 20:01:52,027] [INFO] [logging.py:107:log_dist] [Rank 0] step=51, skipped=0, lr=[1e-05], mom=[[0.8, 0.999]]
+[2025-10-22 20:01:52,027] [INFO] [timer.py:264:stop] epoch=0/micro_step=51/global_step=51, RunningAvgSamplesPerSec=0.7262737155835698, CurrSamplesPerSec=0.7275989798268246, MemAllocated=1.14GB, MaxMemAllocated=16.37GB
+[Step 51/100] Loss: 4.7400 | Global Tokens/s: 254.57 | GPU Mem (GB): 0.95 | Peak Mem: 16.37
+[2025-10-22 20:02:03,029] [INFO] [logging.py:107:log_dist] [Rank 0] step=52, skipped=0, lr=[1e-05], mom=[[0.8, 0.999]]
+[2025-10-22 20:02:03,030] [INFO] [timer.py:264:stop] epoch=0/micro_step=52/global_step=52, RunningAvgSamplesPerSec=0.7262994614517919, CurrSamplesPerSec=0.7275631827635091, MemAllocated=1.14GB, MaxMemAllocated=16.37GB
+[Step 52/100] Loss: 4.4136 | Global Tokens/s: 254.56 | GPU Mem (GB): 0.95 | Peak Mem: 16.37
