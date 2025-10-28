@@ -52,7 +52,7 @@ def train_step(ds_engine, inputs, labels):
 def main():
     parser = argparse.ArgumentParser()
     parser = deepspeed.add_config_arguments(parser)
-    parser.add_argument('--model_name', type=str, default='meta-llama/Llama-2-7b-hf')
+    parser.add_argument('--model_name', type=str, default='/work/jonathan0hsu/llm-inference/model/Llama-2-7B-hf/')
     parser.add_argument('--batch_size', type=int, default=1)
     parser.add_argument('--seq_len', type=int, default=350)
     parser.add_argument('--total_steps', type=int, default=100)

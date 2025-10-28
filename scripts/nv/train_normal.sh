@@ -12,21 +12,14 @@ module purge
 module load miniconda3/conda24.5.0_py3.9 cmake
 module load nvhpc-24.11_hpcx-2.20_cuda-12.6
 
-conda activate ds
-
-export CUDA_HOME="/work/HPC_SYS/twnia2/pkg-rocky8/nvidia/hpc_sdk/Linux_x86_64/24.11/cuda/12.6/"
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"$CUDA_HOME/lib64":"/work/HPC_SYS/twnia2/pkg-rocky8/nvidia/hpc_sdk/Linux_x86_64/24.11/math_libs/12.6/targets/x86_64-linux/lib"
-export LDFLAGS="-L/work/HPC_SYS/twnia2/pkg-rocky8/nvidia/hpc_sdk/Linux_x86_64/24.11/math_libs/12.6/targets/x86_64-linux/lib"
-
-export CC="x86_64-conda-linux-gnu-gcc"
-export CXX="x86_64-conda-linux-gnu-g++"
+conda activate /work/u8644434/deepspeed-pretrain
 
 export PYTORCH_ALLOC_CONF="max_split_size_mb:128,garbage_collection_threshold:0.7,expandable_segments:True"
 
 # echo "CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES"
 # nvidia-smi
 # python -c "import torch; print(torch.cuda.is_available(), torch.cuda.device_count())"
-pip install mpi4py
+
 export ROOT="/work/u8644434/LLM" # [TODO] set your dir location
 export LOGS=$ROOT/logs
 export CONFIG=$ROOT/configs
